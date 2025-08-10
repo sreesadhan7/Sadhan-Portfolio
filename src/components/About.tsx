@@ -1,9 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { GraduationCap, MapPin, Calendar, Award } from 'lucide-react'
+import { GraduationCap, Award, MapPin, Calendar } from 'lucide-react'
 import { personalInfo, education } from '@/data/portfolio'
-import { formatDate } from '@/lib/utils'
 
 export function About() {
   return (
@@ -31,14 +30,6 @@ export function About() {
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">Personal Information</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-portfolio-primary" />
-                <span className="text-gray-600">Location: {personalInfo.location}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Calendar className="w-5 h-5 text-portfolio-primary" />
-                <span className="text-gray-600">Birth Date: {formatDate(personalInfo.birthDate)}</span>
-              </div>
-              <div className="flex items-center gap-3">
                 <Award className="w-5 h-5 text-portfolio-primary" />
                 <span className="text-gray-600">Title: {personalInfo.title}</span>
               </div>
@@ -47,6 +38,20 @@ export function About() {
             <div className="mt-8">
               <h4 className="text-xl font-semibold text-gray-900 mb-4">About</h4>
               <p className="text-gray-600 leading-relaxed">{personalInfo.about}</p>
+              
+              <div className="mt-6">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-portfolio-primary text-white rounded-lg font-medium hover:bg-portfolio-secondary transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download Resume
+                </a>
+              </div>
             </div>
           </motion.div>
 
@@ -73,21 +78,36 @@ export function About() {
                       <GraduationCap className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">{edu.degree}</h4>
-                      <p className="text-portfolio-primary font-medium mb-2">{edu.institution}</p>
-                      <p className="text-gray-600 text-sm mb-3">{edu.field}</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{edu.degree}</h4>
+                      <p className="text-portfolio-primary font-medium mb-1">{edu.institution}</p>
+                      {edu.location && (
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                          <MapPin className="w-4 h-4" />
+                          <span>{edu.location}</span>
+                        </div>
+                      )}
                       <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                        <span>{formatDate(edu.startDate)} - {formatDate(edu.endDate)}</span>
-                        {edu.gpa && <span>GPA: {edu.gpa}</span>}
+                        <span className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(edu.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {new Date(edu.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                        </span>
+                        {edu.gpa && <span className="font-semibold text-portfolio-primary">GPA: {edu.gpa}</span>}
                       </div>
                       <p className="text-gray-600 text-sm mb-3">{edu.description}</p>
-                      <div className="space-y-1">
-                        {edu.achievements.map((achievement, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                            <div className="w-2 h-2 bg-portfolio-primary rounded-full"></div>
-                            {achievement}
-                          </div>
-                        ))}
+                      <div>
+                        <h5 className="font-semibold text-gray-800 mb-2 text-sm">Coursework:</h5>
+                        <div className="flex flex-wrap gap-2">
+                          {edu.achievements
+                            .flatMap((a) => a.split(',').map((c) => c.trim()).filter(Boolean))
+                            .map((course, idx) => (
+                              <span
+                                key={idx}
+                                className="px-3 py-1 bg-portfolio-primary/10 text-portfolio-primary text-sm rounded-full border border-portfolio-primary/20"
+                              >
+                                {course}
+                              </span>
+                            ))}
+                        </div>
                       </div>
                     </div>
                   </div>

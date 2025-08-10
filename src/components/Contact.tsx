@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle, Github, Linkedin, Twitter, Globe } from 'lucide-react'
+import { Mail, Phone, Send, CheckCircle, Github, Linkedin, Twitter, Globe } from 'lucide-react'
 import { contactInfo, socialLinks } from '@/data/portfolio'
 
 // Icon mapping for social links
@@ -68,21 +68,13 @@ export default function Contact() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   }
 
   return (
@@ -136,16 +128,24 @@ export default function Contact() {
                   <p className="text-slate-600 dark:text-slate-400">{contactInfo.phone}</p>
                 </div>
               </div>
+            </motion.div>
 
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-800 dark:text-slate-200">Location</h4>
-                  <p className="text-slate-600 dark:text-slate-400">{contactInfo.location}</p>
-                </div>
-              </div>
+            {/* Resume Download */}
+            <motion.div variants={itemVariants} className="pt-6">
+              <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-4">Resume</h4>
+              <motion.a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download Resume
+              </motion.a>
             </motion.div>
 
             {/* Social Links */}
@@ -162,7 +162,7 @@ export default function Contact() {
                     whileTap={{ scale: 0.95 }}
                     className="w-12 h-12 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-lg flex items-center justify-center hover:from-slate-300 hover:to-slate-400 dark:hover:from-slate-300 dark:hover:to-slate-400 transition-all duration-300"
                   >
-                    {React.createElement(iconMap[link.icon] || Globe, { className: "w-5 h-5 text-slate-600 dark:text-slate-300" })}
+                    {React.createElement(iconMap[link.icon] || Globe, { className: 'w-5 h-5 text-slate-600 dark:text-slate-300' })}
                   </motion.a>
                 ))}
               </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Briefcase, MapPin, Calendar, ExternalLink } from 'lucide-react'
+import { Briefcase, MapPin, Calendar } from 'lucide-react'
 import { workExperience } from '@/data/portfolio'
 import { formatDate } from '@/lib/utils'
 
@@ -21,29 +21,25 @@ export function Experience() {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-portfolio-primary/30 hidden lg:block"></div>
+          {/* Center Timeline Line */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-portfolio-primary/30 hidden lg:block"></div>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {workExperience.map((exp, index) => (
               <motion.div
                 key={exp.id}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className={`relative lg:grid lg:grid-cols-12 lg:gap-8 ${
-                  index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'
-                }`}
+                className="relative lg:grid lg:grid-cols-12 lg:gap-8"
               >
                 {/* Timeline Dot */}
-                <div className="hidden lg:block absolute left-6 w-4 h-4 bg-portfolio-primary rounded-full border-4 border-white shadow-lg"></div>
+                <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-portfolio-primary rounded-full border-4 border-white shadow-lg top-8"></div>
 
-                {/* Content */}
-                <div className={`lg:col-span-5 ${
-                  index % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8'
-                }`}>
-                  <div className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-portfolio-primary">
+                {/* Content Card */}
+                <div className={`lg:col-span-5 ${index % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8'}`}>
+                  <div className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-portfolio-primary text-left">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-portfolio-primary rounded-full flex items-center justify-center text-white">
                         <Briefcase className="w-6 h-6" />
@@ -65,14 +61,12 @@ export function Experience() {
                           {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
                         </span>
                         {exp.current && (
-                          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
-                            Current
-                          </span>
+                          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Current</span>
                         )}
                       </div>
                     </div>
 
-                    <p className="text-gray-600 mb-4">{exp.description}</p>
+                    {/* Description removed as requested */}
 
                     <div className="mb-4">
                       <h4 className="font-semibold text-gray-900 mb-2">Key Responsibilities:</h4>
@@ -90,10 +84,7 @@ export function Experience() {
                       <h4 className="font-semibold text-gray-900 mb-2">Technologies Used:</h4>
                       <div className="flex flex-wrap gap-2">
                         {exp.technologies.map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1 bg-portfolio-primary/10 text-portfolio-primary text-sm rounded-full border border-portfolio-primary/20"
-                          >
+                          <span key={idx} className="px-3 py-1 bg-portfolio-primary/10 text-portfolio-primary text-sm rounded-full border border-portfolio-primary/20">
                             {tech}
                           </span>
                         ))}

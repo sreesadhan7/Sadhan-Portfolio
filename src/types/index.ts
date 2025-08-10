@@ -3,8 +3,8 @@ export interface PersonalInfo {
   title: string
   email: string
   phone: string
-  location: string
-  birthDate: string
+  location?: string
+  birthDate?: string
   about: string
   avatar: string
 }
@@ -19,6 +19,7 @@ export interface Education {
   gpa?: string
   description: string
   achievements: string[]
+  location?: string
 }
 
 export interface WorkExperience {
@@ -50,14 +51,13 @@ export interface Skill {
   id: string
   name: string
   category: 'frontend' | 'backend' | 'database' | 'devops' | 'other'
-  proficiency: 'beginner' | 'intermediate' | 'advanced' | 'expert'
+  proficiency?: 'beginner' | 'intermediate' | 'advanced' | 'expert'
   icon?: string
 }
 
 export interface ContactInfo {
   email: string
   phone: string
-  location: string
   linkedin?: string
   github?: string
   twitter?: string

@@ -3,11 +3,8 @@
 import { motion } from 'framer-motion'
 import { ChevronDown, Download, Mail, Github, Linkedin } from 'lucide-react'
 import { personalInfo, socialLinks } from '@/data/portfolio'
-import { calculateAge } from '@/lib/utils'
 
 export function Hero() {
-  const age = calculateAge(personalInfo.birthDate)
-
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -42,19 +39,13 @@ export function Hero() {
               <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-4">
                 {personalInfo.name}
               </h1>
-              <div className="text-2xl lg:text-3xl font-semibold gradient-text mb-6">
+              <div className="text-2xl lg:text-3xl font-semibold gradient-text mb-4">
                 {personalInfo.title}
               </div>
+              <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0">
+                Transforming ideas into elegant digital solutions with expertise in full-stack development, AI/ML, and cloud technologies. Currently pursuing my Master's at the University of Florida while building innovative applications that make a difference.
+              </p>
             </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0"
-            >
-              {personalInfo.about}
-            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -62,14 +53,17 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
             >
-              <motion.button
+              <motion.a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-portfolio-primary text-white rounded-lg font-medium hover:bg-portfolio-secondary transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
                 Download Resume
-              </motion.button>
+              </motion.a>
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -110,7 +104,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - 3D Avatar */}
+          {/* Right Content - Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -118,9 +112,22 @@ export function Hero() {
             className="flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* 3D Avatar Placeholder */}
-              <div className="w-80 h-80 bg-gradient-to-br from-portfolio-primary to-portfolio-secondary rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-2xl animate-glow">
-                {personalInfo.name.charAt(0)}
+              {/* Profile Image */}
+              <div className="w-80 h-80 bg-gradient-to-br from-portfolio-primary to-portfolio-secondary rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-2xl animate-glow overflow-hidden">
+                <img 
+                  src="/MVNC4784.JPG" 
+                  alt="Sai Sree Sadhan Polimera"
+                  className="w-full h-full object-cover rounded-full"
+                  onError={(e) => {
+                    // Fallback to initials if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = personalInfo.name.charAt(0);
+                    }
+                  }}
+                />
               </div>
               
               {/* Floating Info Cards */}
@@ -130,8 +137,8 @@ export function Hero() {
                 transition={{ duration: 0.5, delay: 1.2 }}
                 className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-4 border border-gray-200"
               >
-                <div className="text-sm text-gray-600">Age</div>
-                <div className="text-2xl font-bold text-portfolio-primary">{age}</div>
+                <div className="text-sm text-gray-600">Experience</div>
+                <div className="text-2xl font-bold text-portfolio-primary">3+ Years</div>
               </motion.div>
 
               <motion.div
@@ -140,8 +147,8 @@ export function Hero() {
                 transition={{ duration: 0.5, delay: 1.4 }}
                 className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-4 border border-gray-200"
               >
-                <div className="text-sm text-gray-600">Location</div>
-                <div className="text-lg font-semibold text-portfolio-primary">{personalInfo.location}</div>
+                <div className="text-sm text-gray-600">Projects</div>
+                <div className="text-lg font-semibold text-portfolio-primary">10+</div>
               </motion.div>
             </div>
           </motion.div>
