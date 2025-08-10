@@ -50,7 +50,7 @@ export interface Project {
 export interface Skill {
   id: string
   name: string
-  category: 'frontend' | 'backend' | 'database' | 'devops' | 'other'
+  category: 'frontend' | 'backend' | 'databases' | 'cloud' | 'analytics' | 'leadership'
   proficiency?: 'beginner' | 'intermediate' | 'advanced' | 'expert'
   icon?: string
 }

@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { Navigation } from '@/components/Navigation'
 import { Hero } from '@/components/Hero'
-import { About } from '@/components/About'
-import { Experience } from '@/components/Experience'
-import { Projects } from '@/components/Projects'
-import { Skills } from '@/components/Skills'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
-import FloatingParticles from '@/components/FloatingParticles'
+
+const About = dynamic(() => import('@/components/About').then(mod => ({ default: mod.About })), { ssr: false, loading: () => <div /> })
+const Experience = dynamic(() => import('@/components/Experience').then(mod => ({ default: mod.Experience })), { ssr: false, loading: () => <div /> })
+const Projects = dynamic(() => import('@/components/Projects').then(mod => ({ default: mod.Projects })), { ssr: false, loading: () => <div /> })
+const Skills = dynamic(() => import('@/components/Skills').then(mod => ({ default: mod.Skills })), { ssr: false, loading: () => <div /> })
+const Contact = dynamic(() => import('@/components/Contact').then(mod => ({ default: mod.default })), { ssr: false, loading: () => <div /> })
+const Footer = dynamic(() => import('@/components/Footer').then(mod => ({ default: mod.default })), { ssr: false, loading: () => <div /> })
+const FloatingParticles = dynamic(() => import('@/components/FloatingParticles').then(mod => ({ default: mod.default })), { ssr: false, loading: () => <div /> })
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -44,7 +46,6 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <FloatingParticles />
       <Navigation />
-      
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0 }}

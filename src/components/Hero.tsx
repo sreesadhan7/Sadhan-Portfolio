@@ -132,20 +132,10 @@ export function Hero() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
-                className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-4 border border-gray-200"
+                className="absolute -bottom-3 -left-3 bg-white rounded-lg shadow-lg p-3 border border-gray-200"
               >
                 <div className="text-sm text-gray-600">Experience</div>
-                <div className="text-2xl font-bold text-portfolio-primary">3+ Years</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.4 }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-4 border border-gray-200"
-              >
-                <div className="text-sm text-gray-600">Projects</div>
-                <div className="text-lg font-semibold text-portfolio-primary">10+</div>
+                <div className="text-xl font-bold text-portfolio-primary">3+ Years</div>
               </motion.div>
             </div>
           </motion.div>

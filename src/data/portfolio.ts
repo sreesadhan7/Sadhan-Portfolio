@@ -102,13 +102,11 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "Agentic AI Systems",
-    description: "Built automated AI agents on the MindStudio platform, automating workflows and cutting manual tasks by 45%. Refined Prompt Engineering capabilities to increase task efficiency by 60%, delivering scalable, production-ready solutions.",
+    description: "A collection of automated AI-powered solutions built using the MindStudio Platform, designed to solve real-world problems and streamline everyday tasks.",
     image: "/api/placeholder/600/400",
-    technologies: ["MindStudio", "n8n", "RAG", "LLMs", "Automation", "Prompt Engineering"],
-    githubUrl: "https://github.com/sreesadhan/agentic-ai-systems",
-    liveUrl: "",
+    technologies: ["MindStudio", "n8n", "RAG", "LLMs", "AI Agents", "Prompt Engineering", "Automation"],
+    githubUrl: "https://github.com/sreesadhan7/AI-Agents-Portfolio",
     features: [
-      "Automated AI agents on MindStudio platform",
       "45% reduction in manual tasks",
       "60% increase in task efficiency",
       "Scalable, production-ready solutions",
@@ -119,13 +117,11 @@ export const projects: Project[] = [
   {
     id: "2",
     title: "Cat Fact Tracker",
-    description: "Redesigned a fully functional animal fact tracker app with Next.js, TypeScript, and API integrations, attracting 10,000+ active users. Integrated external API with 98% uptime handling 500+ requests per minute.",
+    description: "Cat Fact Tracker is a simple app that fetches, displays, and manages interesting cat facts. Users can view random facts, track favorites, and access a history of previously viewed facts.",
     image: "/api/placeholder/600/400",
-    technologies: ["Python", "Next.js", "TypeScript", "RESTful API", "SQL", "Git", "FastAPI"],
-    githubUrl: "https://github.com/sreesadhan/cat-fact-tracker",
-    liveUrl: "https://cat-fact-tracker.vercel.app",
+    technologies: ["React", "Python", "Next.js", "TypeScript", "RESTful API", "SQL", "Git", "FastAPI"],
+    githubUrl: "https://github.com/sreesadhan7/cat-fact-tracker",
     features: [
-      "10,000+ active users",
       "98% API uptime",
       "500+ requests per minute handling",
       "Real-time cat facts delivery",
@@ -136,72 +132,254 @@ export const projects: Project[] = [
   },
   {
     id: "3",
-    title: "Automated Text Censoring",
-    description: "Orchestrated NLP and ETL pipelines, improving processing accuracy by 30% through advanced pre-processing. Established Git workflow and reporting pipelines, reducing manual effort by 40% and accelerating CI/CD execution by 25%.",
+    title: "Sadhan Portfolio",
+    description: "Personal Portfolio consisting my experience and projects.",
     image: "/api/placeholder/600/400",
-    technologies: ["Python", "PyTest", "Git", "CI/CD", "Power BI", "Transformers", "NLP", "ETL"],
-    githubUrl: "https://github.com/sreesadhan/automated-text-censoring",
-    liveUrl: "",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/sreesadhan7/Sadhan-Portfolio",
     features: [
-      "30% improvement in processing accuracy",
-      "40% reduction in manual effort",
-      "25% acceleration in CI/CD execution",
-      "Advanced NLP and ETL pipelines",
-      "Git workflow optimization",
-      "Power BI reporting integration"
+      "Showcases experience and projects",
+      "Modern UI/UX",
+      "Responsive design"
+    ],
+    category: "web"
+  },
+  {
+    id: "4",
+    title: "Solana Crypto Transaction",
+    description: "A professional-grade Solana portfolio dashboard that allows users to connect their wallets and view balances, tokens, and transaction history. Demonstrates modern React development with Web3 integration, featuring a polished purple/violet theme and full mobile responsiveness.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Solana", "React", "Next.js", "Web3", "TypeScript"],
+    githubUrl: "https://github.com/sreesadhan7/Solana-Crypto-Transaction-dashboard",
+    features: [
+      "Wallet connection",
+      "Token and transaction history",
+      "Mobile responsive"
+    ],
+    category: "web"
+  },
+  {
+    id: "5",
+    title: "Email-System-Sender",
+    description: "An email system sender built using AngularJS, Node.js, MySQL, and REST API. The webpage allows users to enter their name and email address into a form, storing the data in a MySQL database and sending a confirmation email to the provided address.",
+    image: "/api/placeholder/600/400",
+    technologies: ["AngularJS", "Node.js", "MySQL", "REST API"],
+    githubUrl: "https://github.com/sreesadhan7/Email-System-Sender",
+    features: [
+      "User form for email entry",
+      "MySQL database integration",
+      "Confirmation email sending"
+    ],
+    category: "web"
+  },
+  {
+    id: "6",
+    title: "Data-Clustering-Analysis-and-Visualization-Pipeline",
+    description: "A Python-based application integrating data visualization with a user-friendly web interface. Processes incident data extracted from PDFs issued by the Norman, Oklahoma Police Department to create meaningful insights through clustering and comparison visualizations.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Python", "Flask", "scikit-learn", "Visualization"],
+    githubUrl: "https://github.com/sreesadhan7/Data-Clustering-Analysis-and-Visualization-Pipeline",
+    features: [
+      "PDF data extraction",
+      "Clustering analysis",
+      "Interactive visualizations"
     ],
     category: "ai"
+  },
+  {
+    id: "7",
+    title: "The_Unredactor",
+    description: "A Python application that automates the recovery of redacted names in textual data. Processes training and test datasets, learning patterns from context to accurately predict and replace redacted names.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Python", "NLP", "spaCy"],
+    githubUrl: "https://github.com/sreesadhan7/The_Unredactor",
+    features: [
+      "Redacted name recovery",
+      "Contextual pattern learning",
+      "Automated prediction and replacement"
+    ],
+    category: "ai"
+  },
+  {
+    id: "8",
+    title: "Personal-Data-Censoring",
+    description: "A Python-based redaction system that automates the identification and censoring of sensitive information within text files. The application leverages a global dictionary and spaCy pipeline for efficient data processing.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Python", "spaCy", "NLP"],
+    githubUrl: "https://github.com/sreesadhan7/Personal-Data-Censoring",
+    features: [
+      "Sensitive data identification",
+      "Automated redaction",
+      "spaCy pipeline integration"
+    ],
+    category: "ai"
+  },
+  {
+    id: "9",
+    title: "Data-Collector_PDF-to-SQL-Automation",
+    description: "Automates the extraction of data from PDFs and inserts it into an SQL database.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Python", "PDF Extraction", "SQL", "Automation"],
+    githubUrl: "https://github.com/sreesadhan7/Data-Collector_PDF-to-SQL-Automation",
+    features: [
+      "PDF data extraction",
+      "SQL database automation",
+      "Data transformation pipeline"
+    ],
+    category: "ai"
+  },
+  {
+    id: "10",
+    title: "Data_Extraction-Processing",
+    description: "A project dedicated to extracting and processing data, leveraging APIs and Python for robust data workflows.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Python", "API", "Data Processing"],
+    githubUrl: "https://github.com/sreesadhan7/Data_Extraction-Processing",
+    features: [
+      "API data extraction",
+      "Automated data processing",
+      "Workflow optimization"
+    ],
+    category: "ai"
+  },
+  {
+    id: "11",
+    title: "Global Warming - Deep Dive (dbback & dbfront)",
+    description: "An in-depth analysis of global warming data, including both backend and frontend components for data visualization and management.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Python", "React", "Database", "Visualization"],
+    githubUrl: "https://github.com/sreesadhan7/dbBack",
+    features: [
+      "Global warming data analysis",
+      "Backend and frontend integration",
+      "Data visualization"
+    ],
+    category: "web"
+  },
+  {
+    id: "12",
+    title: "Airline-FAQ",
+    description: "A frequently asked questions system for airlines, built using AWS RDS & Lambda.",
+    image: "/api/placeholder/600/400",
+    technologies: ["EJS", "AWS RDS", "Lambda"],
+    githubUrl: "https://github.com/sreesadhan7/Airline-FAQ",
+    features: [
+      "Airline FAQ system",
+      "AWS RDS integration",
+      "Serverless architecture"
+    ],
+    category: "web"
+  },
+  {
+    id: "13",
+    title: "Guide-Me",
+    description: "A guide allocation project made as per DBMS course requirements.",
+    image: "/api/placeholder/600/400",
+    technologies: ["EJS", "DBMS", "Web App"],
+    githubUrl: "https://github.com/sreesadhan7/Guide-Me",
+    features: [
+      "Guide allocation system",
+      "DBMS integration",
+      "Web-based interface"
+    ],
+    category: "web"
+  },
+  {
+    id: "14",
+    title: "Elective-Management-System",
+    description: "An online Elective Management system built in NuxtJS and Firestore.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Vue.js", "NuxtJS", "Firestore"],
+    githubUrl: "https://github.com/sreesadhan7/Elective-Management-System",
+    features: [
+      "Elective management",
+      "NuxtJS frontend",
+      "Firestore backend"
+    ],
+    category: "web"
   }
 ]
 
 export const skills: Skill[] = [
-  // Languages
-  { id: "1", name: "Python", category: "backend", icon: "🐍" },
-  { id: "2", name: "Java", category: "backend", icon: "☕" },
-  { id: "3", name: "C/C++", category: "backend", icon: "⚙️" },
+  // Frontend Development
+  { id: "1", name: "ReactJS", category: "frontend", icon: "⚛️" },
+  { id: "2", name: "NextJS", category: "frontend", icon: "⚡" },
+  { id: "3", name: "AngularJS", category: "frontend", icon: "🅰️" },
   { id: "4", name: "JavaScript", category: "frontend", icon: "🟨" },
   { id: "5", name: "TypeScript", category: "frontend", icon: "📘" },
-  { id: "6", name: "HTML5/CSS", category: "frontend", icon: "🌐" },
-  { id: "7", name: "R", category: "backend", icon: "📊" },
-  { id: "8", name: "Golang", category: "backend", icon: "🐹" },
-  
-  // Frameworks
-  { id: "9", name: "ReactJS", category: "frontend", icon: "⚛️" },
-  { id: "10", name: "NextJS", category: "frontend", icon: "⚡" },
-  { id: "11", name: "AngularJS", category: "frontend", icon: "🅰️" },
-  { id: "12", name: "NodeJS", category: "backend", icon: "🟢" },
-  { id: "13", name: "Spring Boot", category: "backend", icon: "🍃" },
-  { id: "14", name: "TensorFlow", category: "other", icon: "🤖" },
-  { id: "15", name: "PyTorch", category: "other", icon: "🔥" },
-  
-  // Databases
-  { id: "16", name: "SQL", category: "database", icon: "🗄️" },
-  { id: "17", name: "NoSQL", category: "database", icon: "📦" },
-  { id: "18", name: "MongoDB", category: "database", icon: "🍃" },
-  { id: "19", name: "Snowflake", category: "database", icon: "❄️" },
-  { id: "20", name: "Netezza", category: "database", icon: "🔷" },
-  
+  { id: "6", name: "HTML5", category: "frontend", icon: "🌐" },
+  { id: "7", name: "Tailwind CSS", category: "frontend", icon: "💠" },
+  { id: "8", name: "Three.js", category: "frontend", icon: "🧊" },
+  { id: "9", name: "Vue.js", category: "frontend", icon: "🟩" },
+  { id: "10", name: "D3.js", category: "frontend", icon: "📈" },
+
+  // Backend Development
+  { id: "11", name: "Python", category: "backend", icon: "🐍" },
+  { id: "12", name: "Java", category: "backend", icon: "☕" },
+  { id: "13", name: "C/C++", category: "backend", icon: "⚙️" },
+  { id: "14", name: "NodeJS", category: "backend", icon: "🟢" },
+  { id: "15", name: "Spring Boot", category: "backend", icon: "🍃" },
+  { id: "16", name: "Golang", category: "backend", icon: "🐹" },
+  { id: "17", name: "Django", category: "backend", icon: "🌱" },
+  { id: "18", name: "Flask", category: "backend", icon: "🍶" },
+  { id: "19", name: "Express.js", category: "backend", icon: "🚂" },
+
+  // Databases & Storage
+  { id: "20", name: "SQL", category: "databases", icon: "🗄️" },
+  { id: "21", name: "NoSQL", category: "databases", icon: "📦" },
+  { id: "22", name: "MongoDB", category: "databases", icon: "🍃" },
+  { id: "23", name: "Snowflake", category: "databases", icon: "❄️" },
+  { id: "24", name: "Netezza", category: "databases", icon: "🔷" },
+  { id: "25", name: "PostgreSQL", category: "databases", icon: "🐘" },
+  { id: "26", name: "MySQL", category: "databases", icon: "🐬" },
+  { id: "27", name: "JSON", category: "databases", icon: "🔣" },
+
   // Cloud & DevOps
-  { id: "21", name: "AWS", category: "devops", icon: "☁️" },
-  { id: "22", name: "Azure", category: "devops", icon: "🔷" },
-  { id: "23", name: "GCP", category: "devops", icon: "☁️" },
-  { id: "24", name: "Docker", category: "devops", icon: "🐳" },
-  { id: "25", name: "Kubernetes", category: "devops", icon: "⚓" },
-  { id: "26", name: "Git", category: "devops", icon: "📝" },
-  
-  // Analytics & ML
-  { id: "27", name: "Pandas", category: "other", icon: "🐼" },
-  { id: "28", name: "NumPy", category: "other", icon: "🔢" },
-  { id: "29", name: "scikit-learn", category: "other", icon: "🧠" },
-  { id: "30", name: "Tableau", category: "other", icon: "📊" },
-  { id: "31", name: "Power BI", category: "other", icon: "📈" },
-  
-  // Other Tools
-  { id: "32", name: "Kafka", category: "other", icon: "📨" },
-  { id: "33", name: "Spark", category: "other", icon: "🔥" },
-  { id: "34", name: "Linux/Unix", category: "other", icon: "🐧" },
-  { id: "35", name: "Jira", category: "other", icon: "📋" },
-  { id: "36", name: "Confluence", category: "other", icon: "📚" }
+  { id: "28", name: "AWS", category: "cloud", icon: "☁️" },
+  { id: "29", name: "Azure", category: "cloud", icon: "🔷" },
+  { id: "30", name: "GCP", category: "cloud", icon: "☁️" },
+  { id: "31", name: "Docker", category: "cloud", icon: "🐳" },
+  { id: "32", name: "Kubernetes", category: "cloud", icon: "⚓" },
+  { id: "33", name: "Git", category: "cloud", icon: "📝" },
+  { id: "34", name: "GitHub", category: "cloud", icon: "🐙" },
+  { id: "35", name: "VSCode", category: "cloud", icon: "💻" },
+  { id: "36", name: "Vercel", category: "cloud", icon: "▲" },
+  { id: "37", name: "Firebase", category: "cloud", icon: "🔥" },
+  { id: "38", name: "HP ALM", category: "cloud", icon: "🧪" },
+  { id: "39", name: "Linux/Unix", category: "cloud", icon: "🐧" },
+  { id: "40", name: "Kafka", category: "cloud", icon: "📨" },
+  { id: "41", name: "Spark", category: "cloud", icon: "🔥" },
+  { id: "42", name: "CI/CD", category: "cloud", icon: "🔄" },
+  { id: "43", name: "Cursor AI", category: "cloud", icon: "🤖" },
+
+  // Analytics & Data Science
+  { id: "44", name: "Pandas", category: "analytics", icon: "🐼" },
+  { id: "45", name: "NumPy", category: "analytics", icon: "🔢" },
+  { id: "46", name: "scikit-learn", category: "analytics", icon: "🧠" },
+  { id: "47", name: "TensorFlow", category: "analytics", icon: "🤖" },
+  { id: "48", name: "PyTorch", category: "analytics", icon: "🔥" },
+  { id: "49", name: "Tableau", category: "analytics", icon: "📊" },
+  { id: "50", name: "Power BI", category: "analytics", icon: "📈" },
+  { id: "51", name: "MS Excel", category: "analytics", icon: "📊" },
+  { id: "52", name: "Jira", category: "analytics", icon: "📋" },
+  { id: "53", name: "Confluence", category: "analytics", icon: "📚" },
+  { id: "54", name: "Agile", category: "analytics", icon: "🏃" },
+  { id: "55", name: "NLP", category: "analytics", icon: "🗣️" },
+  { id: "56", name: "R", category: "analytics", icon: "📊" },
+  { id: "57", name: "LLMs", category: "analytics", icon: "🧠" },
+  { id: "58", name: "RAG", category: "analytics", icon: "🔗" },
+
+  // Leadership & Management
+  { id: "59", name: "Project Management", category: "leadership", icon: "📅" },
+  { id: "60", name: "Team Collaboration", category: "leadership", icon: "🤝" },
+  { id: "61", name: "Individual Contributor", category: "leadership", icon: "🧑‍💻" },
+  { id: "62", name: "Open Communication", category: "leadership", icon: "💬" },
+  { id: "63", name: "Strategic Planning", category: "leadership", icon: "🧭" },
+  { id: "64", name: "Conflict Resolution", category: "leadership", icon: "🕊️" },
+  { id: "65", name: "Mentoring & Coaching", category: "leadership", icon: "🎓" },
+  { id: "66", name: "Cross-functional Leadership", category: "leadership", icon: "🌐" },
+  { id: "67", name: "Time Management", category: "leadership", icon: "⏰" },
+  { id: "68", name: "Decision Making", category: "leadership", icon: "🧠" }
 ]
 
 export const contactInfo: ContactInfo = {
