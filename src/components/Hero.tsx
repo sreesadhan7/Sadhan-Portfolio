@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { ChevronDown, Download, Mail, Github, Linkedin } from 'lucide-react'
 import { personalInfo, socialLinks } from '@/data/portfolio'
 
@@ -113,20 +114,16 @@ export function Hero() {
           >
             <div className="relative">
               {/* Profile Image */}
-              <div className="w-80 h-80 bg-gradient-to-br from-portfolio-primary to-portfolio-secondary rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-2xl animate-glow overflow-hidden">
-                <img 
-                  src="/MVNC4784.JPG" 
+              <div className="relative w-80 h-80 bg-gradient-to-br from-portfolio-primary to-portfolio-secondary rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-2xl animate-glow overflow-hidden">
+                <Image
+                  src="/MVNC4784.JPG"
                   alt="Sai Sree Sadhan Polimera"
-                  className="w-full h-full object-cover rounded-full"
-                  onError={(e) => {
-                    // Fallback to initials if image fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = personalInfo.name.charAt(0);
-                    }
-                  }}
+                  fill
+                  sizes="(max-width: 1024px) 20rem, 20rem"
+                  priority
+                  quality={100}
+                  draggable={false}
+                  className="object-cover rounded-full select-none scale-110"
                 />
               </div>
               

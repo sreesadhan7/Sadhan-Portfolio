@@ -22,7 +22,7 @@ export const education: Education[] = [
     achievements: [
       "Data Structures & Algorithms, Machine Learning, Cloud Computing",
       "Object-Oriented Programming (OOPs), Artificial Intelligence, System Design",
-      "Full-Stack Development, Natural Language Processing, Data Science & Analysis, Data Engineering"
+      "Full-Stack Development, Natural Language Processing, Data Engineering"
     ],
     location: "Gainesville, FL"
   },
@@ -38,7 +38,7 @@ export const education: Education[] = [
     achievements: [
       "Data Structures & Algorithms, Machine Learning, Cloud Computing",
       "Object-Oriented Programming (OOPs), System Design, Software Development Life Cycle",
-      "Full-Stack Development, Data Science & Analysis, Computer Networks, Statistics, Compiler Design, Operating Systems, Computer Architecture, Software Engineering"
+      "Full-Stack Development, Data Science & Analysis, Computer Networks, Compiler Design, Operating Systems, Computer Architecture, Software Engineering"
     ],
     location: "Coimbatore, India"
   }

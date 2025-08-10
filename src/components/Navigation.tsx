@@ -50,7 +50,7 @@ export function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 pointer-events-auto ${
           isScrolled 
             ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200/20' 
             : 'bg-transparent'
@@ -64,7 +64,7 @@ export function Navigation() {
               className="text-2xl font-bold gradient-text cursor-pointer"
               onClick={scrollToTop}
             >
-              Sadhan
+              Sree Sadhan
             </motion.div>
 
             {/* Desktop Navigation */}

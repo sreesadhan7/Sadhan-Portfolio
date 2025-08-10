@@ -24,6 +24,8 @@ export function Experience() {
           {/* Center Timeline Line */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-portfolio-primary/30 hidden lg:block"></div>
 
+          {/* Year markers removed as requested */}
+
           <div className="space-y-12">
             {workExperience.map((exp, index) => (
               <motion.div
@@ -36,6 +38,8 @@ export function Experience() {
               >
                 {/* Timeline Dot */}
                 <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-portfolio-primary rounded-full border-4 border-white shadow-lg top-8"></div>
+
+                {/* Removed per-item year label to simplify timeline */}
 
                 {/* Content Card */}
                 <div className={`lg:col-span-5 ${index % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8'}`}>
@@ -72,7 +76,7 @@ export function Experience() {
                       <h4 className="font-semibold text-gray-900 mb-2">Key Responsibilities:</h4>
                       <ul className="space-y-1">
                         {exp.responsibilities.map((resp, idx) => (
-                          <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                          <li key={idx} className="body-text flex items-start gap-2">
                             <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full mt-2 flex-shrink-0"></div>
                             {resp}
                           </li>

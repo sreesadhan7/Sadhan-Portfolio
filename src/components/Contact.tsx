@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, Send, CheckCircle, Github, Linkedin, Twitter, Globe } from 'lucide-react'
+import { Mail, Send, CheckCircle, Github, Linkedin, Twitter, Globe, Download } from 'lucide-react'
 import { contactInfo, socialLinks } from '@/data/portfolio'
 
 // Icon mapping for social links
@@ -115,54 +115,57 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium text-slate-800 dark:text-slate-200">Email</h4>
-                  <p className="text-slate-600 dark:text-slate-400">{contactInfo.email}</p>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="text-slate-600 dark:text-slate-400 hover:text-portfolio-primary underline underline-offset-2 break-all"
+                  >
+                    {contactInfo.email}
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-800 dark:text-slate-200">Phone</h4>
-                  <p className="text-slate-600 dark:text-slate-400">{contactInfo.phone}</p>
-                </div>
-              </div>
+              
             </motion.div>
 
-            {/* Resume Download */}
+            {/* Resume Download (match Hero styling) */}
             <motion.div variants={itemVariants} className="pt-6">
               <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-4">Resume</h4>
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-portfolio-primary text-white rounded-lg font-medium hover:bg-portfolio-secondary transition-all duration-300 shadow-lg hover:shadow-xl pointer-events-auto relative z-[10]"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+                <Download className="w-5 h-5" />
                 Download Resume
               </motion.a>
             </motion.div>
 
-            {/* Social Links */}
+            {/* Social Links (match Hero styling) */}
             <motion.div variants={itemVariants} className="pt-6">
               <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-4">Follow Me</h4>
-              <div className="flex space-x-4">
-                {socialLinks.map((link, index) => (
+              <div className="flex justify-start gap-4">
+                {socialLinks.map((social, index) => (
                   <motion.a
-                    key={link.platform}
-                    href={link.url}
+                    key={social.platform}
+                    href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 rounded-lg flex items-center justify-center hover:from-slate-300 hover:to-slate-400 dark:hover:from-slate-300 dark:hover:to-slate-400 transition-all duration-300"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
+                    aria-label={social.platform}
+                    className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-portfolio-primary hover:bg-portfolio-primary hover:text-white transition-all duration-300 pointer-events-auto relative z-[10]"
                   >
-                    {React.createElement(iconMap[link.icon] || Globe, { className: 'w-5 h-5 text-slate-600 dark:text-slate-300' })}
+                    {social.platform === 'GitHub' && <Github className="w-6 h-6" />}
+                    {social.platform === 'LinkedIn' && <Linkedin className="w-6 h-6" />}
+                    {social.platform !== 'GitHub' && social.platform !== 'LinkedIn' && (
+                      <Globe className="w-6 h-6" />
+                    )}
                   </motion.a>
                 ))}
               </div>

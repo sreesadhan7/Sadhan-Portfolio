@@ -121,7 +121,7 @@ export function Projects() {
                       {project.title}
                     </h3>
                     
-                    <p className="text-gray-600 mb-4 line-clamp-3">
+                    <p className="body-text mb-4 line-clamp-3">
                       {project.description}
                     </p>
 
@@ -147,7 +147,7 @@ export function Projects() {
                       <h4 className="font-medium text-gray-900 mb-2">Key Features:</h4>
                       <ul className="space-y-1">
                         {project.features.slice(0, 3).map((feature, idx) => (
-                          <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                          <li key={idx} className="body-text flex items-start gap-2">
                             <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full mt-2 flex-shrink-0"></div>
                             {feature}
                           </li>

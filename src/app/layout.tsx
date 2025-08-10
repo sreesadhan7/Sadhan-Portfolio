@@ -5,20 +5,21 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Sadhan - Software Engineer Portfolio',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: 'Sree Sadhan - Software Engineer Portfolio',
   description: 'Professional portfolio showcasing my skills, experience, and projects in software engineering.',
   keywords: ['Software Engineer', 'Full Stack Developer', 'React', 'Next.js', 'TypeScript', 'Python', 'Django'],
-  authors: [{ name: 'Sadhan' }],
-  creator: 'Sadhan',
+  authors: [{ name: 'Sai Sree Sadhan Polimera' }],
+  creator: 'Sai Sree Sadhan Polimera',
   openGraph: {
-    title: 'Sadhan - Software Engineer Portfolio',
+    title: 'Sree Sadhan - Software Engineer Portfolio',
     description: 'Professional portfolio showcasing my skills, experience, and projects in software engineering.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sadhan - Software Engineer Portfolio',
+    title: 'Sree Sadhan - Software Engineer Portfolio',
     description: 'Professional portfolio showcasing my skills, experience, and projects in software engineering.',
   },
 }
