@@ -301,10 +301,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📞 Contact
 
-- **Email**: [Your Email]
-- **LinkedIn**: [Your LinkedIn]
-- **GitHub**: [Your GitHub]
-
+- **Email**: sreesadhan.polimera11@gmail.com
 ---
 
 Built with ❤️ using modern web technologies 
