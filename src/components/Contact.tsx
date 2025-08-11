@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Send, CheckCircle, Github, Linkedin, Twitter, Globe, Download } from 'lucide-react'
+import { Mail, Send, CheckCircle, Github, Linkedin, Twitter, Globe, Download, Briefcase } from 'lucide-react'
 import { contactInfo, socialLinks } from '@/data/portfolio'
 
 // Icon mapping for social links
@@ -17,7 +17,6 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -35,26 +34,30 @@ export function Contact() {
     setIsSubmitting(true)
     
     try {
-      const response = await fetch('http://localhost:8000/api/contact/', {
+      // Using Resend API
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        }),
       })
       
-      const result = await response.json()
-      
-      if (result.success) {
+      if (response.ok) {
         setIsSubmitted(true)
         // Reset form after 3 seconds
         setTimeout(() => {
           setIsSubmitted(false)
-          setFormData({ name: '', email: '', subject: '', message: '' })
+          setFormData({ name: '', email: '', message: '' })
         }, 3000)
       } else {
         // Handle error
-        alert(result.error || 'Failed to send message. Please try again.')
+        const errorData = await response.json()
+        alert(errorData.error || 'Failed to send message. Please try again.')
       }
     } catch (error) {
       console.error('Error submitting form:', error)
@@ -88,10 +91,11 @@ export function Contact() {
           className="text-center mb-16"
         >
           <motion.h2 variants={itemVariants} className="gradient-text text-4xl md:text-5xl font-bold mb-6">
-            Get In Touch
+            Opportunity to Work Together
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
+          <motion.p variants={itemVariants} className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+            I'm actively seeking new opportunities and collaborations. Whether you have a project in mind, 
+            a position to fill, or just want to discuss potential partnerships, I'd love to hear from you.
           </motion.p>
         </motion.div>
 
@@ -124,7 +128,17 @@ export function Contact() {
                 </div>
               </div>
 
-              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center">
+                  <Briefcase className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-slate-800 dark:text-slate-200">Availability</h4>
+                  <p className="text-slate-600 dark:text-slate-400">
+                    Open to new opportunities • Remote/Hybrid • Full-time/Contract
+                  </p>
+                </div>
+              </div>
             </motion.div>
 
             {/* Resume Download (match Hero styling) */}
@@ -145,7 +159,7 @@ export function Contact() {
 
             {/* Social Links (match Hero styling) */}
             <motion.div variants={itemVariants} className="pt-6">
-              <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-4">Follow Me</h4>
+              <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-4">Professional Profiles</h4>
               <div className="flex justify-start gap-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -185,7 +199,7 @@ export function Contact() {
               className="glass-effect p-8 rounded-2xl border border-slate-200 dark:border-slate-700"
             >
               <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 mb-6">
-                Send a Message
+                Send Me a Message
               </h3>
 
               {isSubmitted ? (
@@ -199,14 +213,14 @@ export function Contact() {
                     Message Sent!
                   </h4>
                   <p className="text-slate-600 dark:text-slate-400">
-                    Thank you for reaching out. I'll get back to you soon!
+                    Thank you for reaching out. I'll get back to you within 24 hours!
                   </p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <motion.div variants={itemVariants}>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Name
+                      Your Name *
                     </label>
                     <input
                       type="text"
@@ -216,13 +230,13 @@ export function Contact() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your name"
+                      placeholder="Your full name"
                     />
                   </motion.div>
 
                   <motion.div variants={itemVariants}>
                     <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Email
+                      Email Address *
                     </label>
                     <input
                       type="email"
@@ -237,24 +251,8 @@ export function Contact() {
                   </motion.div>
 
                   <motion.div variants={itemVariants}>
-                    <label htmlFor="subject" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="What's this about?"
-                    />
-                  </motion.div>
-
-                  <motion.div variants={itemVariants}>
                     <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Message
+                      Message *
                     </label>
                     <textarea
                       id="message"
@@ -264,7 +262,7 @@ export function Contact() {
                       required
                       rows={5}
                       className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell me more about your project or opportunity..."
+                      placeholder="Tell me about your opportunity, project, or collaboration idea..."
                     />
                   </motion.div>
 
