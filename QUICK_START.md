@@ -13,13 +13,18 @@ Your portfolio is now complete with:
 
 ## 🚀 How to Run
 
-### 1. Development Server (Already Running!)
-Your portfolio is currently running at: **http://localhost:3000**
+### 1. Environment setup (Resend)
+Create a `.env.local` file in the project root with:
+```env
+RESEND_API_KEY=re_your_actual_api_key_here
+```
+Restart the dev server after adding or changing env vars.
 
-### 2. If you need to restart:
+### 2. Development Server
 ```bash
 npm run dev
 ```
+Open http://localhost:3000
 
 ### 3. Build for production:
 ```bash
@@ -179,17 +184,13 @@ colors: {
 - ✅ Portfolio structure complete
 - ✅ All sections implemented
 - ✅ Responsive design ready
+- ✅ Serverless contact form via Resend
 
 ### Phase 2: Content Personalization
 - 🔄 Update personal information
 - 🔄 Add your projects
 - 🔄 Customize colors and styling
 - 🔄 Add your own images
-
-### Phase 3: Backend (Future)
-- 📝 Django backend for content management
-- 📝 Database integration
-- 📝 Admin interface
 
 ## 🆘 Need Help?
 

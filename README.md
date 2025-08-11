@@ -12,6 +12,7 @@ A modern, animated portfolio website built with Next.js, TypeScript, and Three.j
 - **Performance Optimized**: Next.js 14 with App Router for optimal performance
 - **TypeScript**: Full type safety throughout the application
 - **Tailwind CSS**: Utility-first CSS framework for rapid development
+- **Contact via Resend**: Serverless email sending using Resend API through a Next.js API route
 
 ## 🛠️ Tech Stack
 
@@ -24,11 +25,8 @@ A modern, animated portfolio website built with Next.js, TypeScript, and Three.j
 - **React Three Fiber**: React renderer for Three.js
 - **Lucide React**: Beautiful, customizable icons
 
-### Backend (Planned)
-- **Python**: Backend programming language
-- **Django**: High-level Python web framework
-- **Django REST Framework**: For building RESTful APIs
-- **PostgreSQL**: Robust, open-source database
+### Email/Contact
+- **Resend API**: Emails are sent via a Next.js API route at `src/app/api/send-email/route.ts` using your `RESEND_API_KEY`
 
 ## 🚀 Why This Tech Stack?
 
@@ -67,25 +65,28 @@ A modern, animated portfolio website built with Next.js, TypeScript, and Three.j
 ```
 src/
 ├── app/                    # Next.js App Router
-│   ├── globals.css        # Global styles and animations
-│   ├── layout.tsx         # Root layout component
-│   └── page.tsx           # Main page component
+│   ├── globals.css         # Global styles and animations
+│   ├── layout.tsx          # Root layout component
+│   ├── page.tsx            # Main page component
+│   └── api/
+│       └── send-email/
+│           └── route.ts    # Next.js API route to send mail via Resend
 ├── components/             # Reusable UI components
-│   ├── Navigation.tsx     # Navigation bar
-│   ├── Hero.tsx          # Hero section
-│   ├── About.tsx         # About and education section
-│   ├── Experience.tsx    # Work experience section
-│   ├── Projects.tsx      # Projects showcase
-│   ├── Skills.tsx        # Skills and technologies
-│   ├── Contact.tsx       # Contact form and info
-│   ├── Footer.tsx        # Footer section
+│   ├── Navigation.tsx      # Navigation bar
+│   ├── Hero.tsx            # Hero section
+│   ├── About.tsx           # About and education section
+│   ├── Experience.tsx      # Work experience section
+│   ├── Projects.tsx        # Projects showcase
+│   ├── Skills.tsx          # Skills and technologies
+│   ├── Contact.tsx         # Contact form and info
+│   ├── Footer.tsx          # Footer section
 │   └── FloatingParticles.tsx # 3D background particles
-├── data/                  # Static data and content
-│   └── portfolio.ts      # Portfolio data structure
-├── lib/                   # Utility functions
-│   └── utils.ts          # Helper functions
-└── types/                 # TypeScript type definitions
-    └── index.ts          # Interface definitions
+├── data/                   # Static data and content
+│   └── portfolio.ts        # Portfolio data structure
+├── lib/                    # Utility functions
+│   └── utils.ts            # Helper functions
+└── types/                  # TypeScript type definitions
+    └── index.ts            # Interface definitions
 ```
 
 ## 🎯 Key Components
@@ -153,14 +154,20 @@ src/
    yarn install
    ```
 
-3. **Run the development server**
+3. **Configure environment variables (Resend)**
+   Create a `.env.local` at the project root and add:
+   ```env
+   RESEND_API_KEY=re_your_actual_api_key_here
+   ```
+
+4. **Run the development server**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Build for Production
@@ -237,7 +244,7 @@ Dark mode support is built-in and automatically detects system preferences. Cust
 
 ## 🔮 Future Enhancements
 
-- **Django Backend**: Content management system
+- **CMS Integration (optional)**: If you want editable content in the future
 - **Blog Section**: Technical articles and insights
 - **Portfolio Analytics**: Visitor tracking and insights
 - **Interactive 3D Models**: More complex 3D elements
