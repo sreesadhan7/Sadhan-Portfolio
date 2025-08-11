@@ -21,6 +21,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.157.0",
+    "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

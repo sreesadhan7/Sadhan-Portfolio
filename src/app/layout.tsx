@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,9 +33,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <link rel="icon" href="/favicon.png" />
+      <head>
+        <link rel="icon" href="/favicon.png" />
+        {/* ✅ Set theme before React hydrates */}
+        <Script id="theme-init" strategy="beforeInteractive">
+            {`
+              try {
+                var t = localStorage.getItem('theme');
+                if (!t) {
+                  localStorage.setItem('theme', 'light'); // ✅ Default theme
+                  t = 'light';
+                }
+                if (t === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `}
+        </Script>
+      </head>
       <body className={`${inter.className} antialiased bg-background text-foreground dark:bg-slate-900 dark:text-slate-100`}> 
         {children}
+        <SpeedInsights/>
       </body>
     </html>
   )
