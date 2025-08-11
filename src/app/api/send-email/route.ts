@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         // Use Resend onboarding sender or your verified domain sender
         from: 'Portfolio Contact <onboarding@resend.dev>',
         // Your actual inbox
-        to: ['sreesadhan.polimera11@gmail.com'],
+        to: ['pssrees007@gmail.com'],
         subject: `New Portfolio Contact: ${name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

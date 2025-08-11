@@ -69,7 +69,7 @@ src/
 - **CORS**: Not required since API route is same origin
 
 ## 🌐 Deployment
-- **Hosting**: Vercel (recommended) or Netlify
+- **Hosting**: Vercel (recommended), GitHub Pages or Netlify
 - **Env Vars**: Add `RESEND_API_KEY` in project settings
 - **DNS (optional)**: Configure a custom domain for branded sender later
 

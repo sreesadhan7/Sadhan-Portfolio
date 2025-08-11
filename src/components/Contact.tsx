@@ -49,11 +49,10 @@ export function Contact() {
       
       if (response.ok) {
         setIsSubmitted(true)
-        // Reset form after 3 seconds
+        setFormData({ name: '', email: '', message: '' })
         setTimeout(() => {
           setIsSubmitted(false)
-          setFormData({ name: '', email: '', message: '' })
-        }, 3000)
+        }, 5000)
       } else {
         // Handle error
         const errorData = await response.json()
@@ -197,17 +196,19 @@ export function Contact() {
           >
             <motion.div
               variants={itemVariants}
-              className="glass-effect p-8 rounded-2xl border border-slate-200 dark:border-slate-700"
+              className="glass-effect p-8 rounded-2xl border border-slate-200 dark:border-slate-700 relative"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 dark:text-slate-200 mb-6">
                 Opportunity to Work Together
               </h3>
 
-              {isSubmitted ? (
+              {isSubmitted && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="absolute inset-0 flex flex-col items-center justify-center bg-white/90 dark:bg-slate-900/90 z-20 rounded-2xl"
+                  style={{ pointerEvents: 'none' }}
                 >
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                   <h4 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-2">
@@ -217,78 +218,78 @@ export function Contact() {
                     Thank you for reaching out. I'll get back to you within 24 hours!
                   </p>
                 </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <motion.div variants={itemVariants}>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Your Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your full name"
-                    />
-                  </motion.div>
-
-                  <motion.div variants={itemVariants}>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your.email@example.com"
-                    />
-                  </motion.div>
-
-                  <motion.div variants={itemVariants}>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell me about your opportunity, project, or collaboration idea..."
-                    />
-                  </motion.div>
-
-                  <motion.button
-                    variants={itemVariants}
-                    type="submit"
-                    disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        <span>Send Message</span>
-                      </>
-                    )}
-                  </motion.button>
-                </form>
               )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    placeholder="Your full name"
+                    disabled={isSubmitting || isSubmitted}
+                  />
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    placeholder="your.email@example.com"
+                    disabled={isSubmitting || isSubmitted}
+                  />
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                    placeholder="Tell me about your opportunity, project, or collaboration idea..."
+                    disabled={isSubmitting || isSubmitted}
+                  />
+                </motion.div>
+                <motion.button
+                  variants={itemVariants}
+                  type="submit"
+                  disabled={isSubmitting || isSubmitted}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </motion.button>
+              </form>
             </motion.div>
           </motion.div>
         </div>

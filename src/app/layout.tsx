@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Sree Sadhan - Software Engineer Portfolio',
+  title: 'Sadhan Portfolio',
   description: 'Professional portfolio showcasing my skills, experience, and projects in software engineering.',
   keywords: ['Software Engineer', 'Full Stack Developer', 'React', 'Next.js', 'TypeScript', 'Python', 'Django'],
   authors: [{ name: 'Sai Sree Sadhan Polimera' }],
@@ -31,6 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <link rel="icon" href="/favicon.png" />
       <body className={`${inter.className} antialiased bg-background text-foreground dark:bg-slate-900 dark:text-slate-100`}> 
         {children}
       </body>

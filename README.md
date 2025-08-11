@@ -1,6 +1,6 @@
 # Sadhan Portfolio 🚀
 
-A modern, animated portfolio website built with Next.js, TypeScript, and Three.js for 3D effects. This portfolio showcases education, work experience, projects, skills, and contact information in a visually appealing single-page application.
+A modern, animated portfolio website built with **Next.js**, **TypeScript**, **Three.js** for 3D effects and deployed seamlessly on **Vercel**. This portfolio showcases education, work experience, projects, skills, and contact information in a visually appealing single-page application.
 
 ## ✨ Features
 
@@ -13,6 +13,7 @@ A modern, animated portfolio website built with Next.js, TypeScript, and Three.j
 - **TypeScript**: Full type safety throughout the application
 - **Tailwind CSS**: Utility-first CSS framework for rapid development
 - **Contact via Resend**: Serverless email sending using Resend API through a Next.js API route
+- **Deployed on Vercel**: Instant, secure, and globally distributed deployment for maximum performance
 
 ## 🛠️ Tech Stack
 
@@ -27,6 +28,9 @@ A modern, animated portfolio website built with Next.js, TypeScript, and Three.j
 
 ### Email/Contact
 - **Resend API**: Emails are sent via a Next.js API route at `src/app/api/send-email/route.ts` using your `RESEND_API_KEY`
+
+### **Deployment**
+- **Vercel** – CI/CD, global CDN, and instant deployments
 
 ## 🚀 Why This Tech Stack?
 
@@ -63,30 +67,56 @@ A modern, animated portfolio website built with Next.js, TypeScript, and Three.j
 ## 📁 Project Structure
 
 ```
-src/
-├── app/                    # Next.js App Router
-│   ├── globals.css         # Global styles and animations
-│   ├── layout.tsx          # Root layout component
-│   ├── page.tsx            # Main page component
-│   └── api/
-│       └── send-email/
-│           └── route.ts    # Next.js API route to send mail via Resend
-├── components/             # Reusable UI components
-│   ├── Navigation.tsx      # Navigation bar
-│   ├── Hero.tsx            # Hero section
-│   ├── About.tsx           # About and education section
-│   ├── Experience.tsx      # Work experience section
-│   ├── Projects.tsx        # Projects showcase
-│   ├── Skills.tsx          # Skills and technologies
-│   ├── Contact.tsx         # Contact form and info
-│   ├── Footer.tsx          # Footer section
-│   └── FloatingParticles.tsx # 3D background particles
-├── data/                   # Static data and content
-│   └── portfolio.ts        # Portfolio data structure
-├── lib/                    # Utility functions
-│   └── utils.ts            # Helper functions
-└── types/                  # TypeScript type definitions
-    └── index.ts            # Interface definitions
+sadhan-portfolio/                           # Project root
+├── public/                                 # Static assets served as-is
+│   ├── logos/                              # Company / tech logos
+│   ├── favicon.png                         # Browser tab icon
+│   ├── MVNC4784.JPG                        # Profile/hero image
+│   └── resume.pdf                          # Downloadable résumé
+│
+├── src/                                    # Application source
+│   ├── app/                                # Next.js App Router
+│   │   ├── globals.css                     # Global styles & animations
+│   │   ├── layout.tsx                      # Root layout component
+│   │   ├── page.tsx                        # Main landing page
+│   │   └── api/                            # Serverless API routes
+│   │       └── send-email/                 # Email endpoint folder
+│   │           └── route.ts                # Next.js API to send mail via Resend
+│   │
+│   ├── components/                         # Reusable UI components
+│   │   ├── About.tsx                       # About & education section
+│   │   ├── Contact.tsx                     # Contact form & info
+│   │   ├── Experience.tsx                  # Experience timeline
+│   │   ├── FloatingParticles.tsx           # Three.js background particles
+│   │   ├── Footer.tsx                      # Footer with links
+│   │   ├── Hero.tsx                        # Hero / intro section
+│   │   ├── Navigation.tsx                  # Top navigation bar
+│   │   ├── Projects.tsx                    # Projects showcase
+│   │   ├── Skills.tsx                      # Skills grid
+│   │   └── ThemeToggle.tsx                 # Light/Dark mode toggle
+│   │
+│   ├── data/
+│   │   └── portfolio.ts                    # Static content (projects, skills, etc.)
+│   │
+│   ├── lib/
+│   │   └── utils.ts                        # Helpers & utilities
+│   │
+│   └── types/
+│       └── index.ts                        # Shared TypeScript types & interfaces
+│
+├── .env.local                              # Local env vars (e.g., RESEND_API_KEY)
+├── .gitignore                              # Git ignore rules
+├── next-env.d.ts                           # Next.js TypeScript ambient types
+├── next.config.js                          # Next.js configuration
+├── package-lock.json                       # NPM lockfile
+├── package.json                            # Scripts & dependencies
+├── postcss.config.js                       # PostCSS config (used by Tailwind)
+├── PROJECT_OVERVIEW.md                     # High-level docs (optional)
+├── QUICK_START.md                          # Quick setup notes (optional)
+├── README.md                               # Project readme
+├── RESEND_SETUP.md                         # Resend API setup guide
+├── tailwind.config.js                      # Tailwind CSS configuration
+└── tsconfig.json                           # TypeScript compiler options
 ```
 
 ## 🎯 Key Components
@@ -176,6 +206,12 @@ src/
 npm run build
 npm start
 ```
+
+### Deployment on Vercel
+This portfolio is deployed on Vercel for:
+- Instant builds & previews
+- Global CDN delivery
+- Automatic HTTPS
 
 ## 🎨 Customization
 
