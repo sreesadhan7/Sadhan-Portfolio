@@ -1,13 +1,24 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Briefcase, MapPin, Calendar } from 'lucide-react'
 import { workExperience } from '@/data/portfolio'
 import { formatDate } from '@/lib/utils'
 
 export function Experience() {
+  const getCompanyInitials = (company: string): string => {
+    return company
+      .split(/\s+/)
+      .map((w) => w[0])
+      .filter(Boolean)
+      .slice(0, 2)
+      .join('')
+      .toUpperCase()
+  }
+
   return (
-    <section id="experience" className="section-padding bg-gray-50">
+    <section id="experience" className="section-padding bg-gray-50 dark:bg-slate-900">
       <div className="container-max">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -16,15 +27,13 @@ export function Experience() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Work Experience</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
           <div className="w-24 h-1 bg-portfolio-primary mx-auto"></div>
         </motion.div>
 
         <div className="relative">
           {/* Center Timeline Line */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-portfolio-primary/30 hidden lg:block"></div>
-
-          {/* Year markers removed as requested */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-portfolio-primary/30 dark:bg-portfolio-primary/40 hidden lg:block"></div>
 
           <div className="space-y-12">
             {workExperience.map((exp, index) => (
@@ -36,47 +45,76 @@ export function Experience() {
                 viewport={{ once: true }}
                 className="relative lg:grid lg:grid-cols-12 lg:gap-8"
               >
-                {/* Timeline Dot */}
-                <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-portfolio-primary rounded-full border-4 border-white shadow-lg top-8"></div>
+                {/* Centered logo circle on the line */}
+                <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-6">
+                  <div className="relative w-16 h-16 rounded-full bg-white dark:bg-slate-800 shadow-xl ring-4 ring-portfolio-primary/30 overflow-hidden">
+                    {/* @ts-ignore: allow optional logoUrl on exp */}
+                    {exp.companyLogoUrl ? (
+                      <Image src={exp.companyLogoUrl} alt={exp.company} fill sizes="64px" className="object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-sm font-bold text-portfolio-primary">
+                          {getCompanyInitials(exp.company)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-                {/* Removed per-item year label to simplify timeline */}
+                {/* Meta next to the circle (location + dates) */}
+                <div
+                  className={`hidden lg:block absolute top-9 ${
+                    index % 2 === 0
+                      ? 'left-[calc(51%+2.25rem)] text-left'
+                      : 'right-[calc(51%+2.25rem)] text-right'
+                  }`}
+                >
+                  <div className="text-base text-gray-700 dark:text-gray-200 leading-tight">
+                    <div className={`flex items-center gap-1 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}>
+                      <MapPin className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                      <span>{exp.location}</span>
+                    </div>
+                    <div className={`flex items-center gap-1 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}>
+                      <Calendar className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                      <span>
+                        {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Content Card */}
                 <div className={`lg:col-span-5 ${index % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8'}`}>
-                  <div className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-portfolio-primary text-left">
+                  <div className="bg-white dark:bg-slate-800 rounded-lg p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-portfolio-primary text-left">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-portfolio-primary rounded-full flex items-center justify-center text-white">
                         <Briefcase className="w-6 h-6" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-gray-900">{exp.title}</h3>
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
                         <p className="text-portfolio-primary font-medium">{exp.company}</p>
                       </div>
                     </div>
 
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                    {/* Location and Dates (mobile only) */}
+                    <div className="space-y-3 mb-4 lg:hidden">
+                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                         <MapPin className="w-4 h-4" />
                         <span>{exp.location}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                         <Calendar className="w-4 h-4" />
                         <span>
                           {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
                         </span>
-                        {exp.current && (
-                          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Current</span>
-                        )}
                       </div>
                     </div>
 
-                    {/* Description removed as requested */}
-
                     <div className="mb-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">Key Responsibilities:</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Key Responsibilities:</h4>
                       <ul className="space-y-1">
                         {exp.responsibilities.map((resp, idx) => (
-                          <li key={idx} className="body-text flex items-start gap-2">
+                          <li key={idx} className="body-text flex items-start gap-2 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full mt-2 flex-shrink-0"></div>
                             {resp}
                           </li>
@@ -85,7 +123,7 @@ export function Experience() {
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Technologies Used:</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Technologies Used:</h4>
                       <div className="flex flex-wrap gap-2">
                         {exp.technologies.map((tech, idx) => (
                           <span key={idx} className="px-3 py-1 bg-portfolio-primary/10 text-portfolio-primary text-sm rounded-full border border-portfolio-primary/20">

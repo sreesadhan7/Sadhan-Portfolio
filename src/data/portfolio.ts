@@ -1,11 +1,11 @@
 import { PersonalInfo, Education, WorkExperience, Project, Skill, ContactInfo, SocialLink, NavigationItem } from '@/types'
 
 export const personalInfo: PersonalInfo = {
-  name: "Sai Sree Sadhan Polimera",
+  name: "Sree Sadhan",
   title: "Software Engineer",
   email: "sreesadhan.polimera11@gmail.com",
   phone: "+1 (352) 756 0268",
-  about: "I'm a passionate Software Engineer with expertise in full-stack development, AI/ML, and cloud technologies. I love turning complex problems into simple, scalable and efficient solutions and am always eager to learn and apply cutting-edge technologies. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying a good cup of coffee.",
+  about: "I'm a passionate Software Engineer with expertise in Full-Stack Development, AI/ML, Data Engineering & Analysis, Application Testing and cloud technologies. I enjoy transforming complex challenges into scalable and user-friendly solutions, and I’m driven by a constant curiosity to learn and apply the latest advancements in technology. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or watching anime.",
   avatar: "/api/placeholder/400/400"
 }
 
@@ -24,7 +24,7 @@ export const education: Education[] = [
       "Object-Oriented Programming (OOPs), Artificial Intelligence, System Design",
       "Full-Stack Development, Natural Language Processing, Data Engineering"
     ],
-    location: "Gainesville, FL"
+    location: "Gainesville, FL, USA"
   },
   {
     id: "2",
@@ -49,7 +49,7 @@ export const workExperience: WorkExperience[] = [
     id: "1",
     title: "Software Engineer",
     company: "University of Florida",
-    location: "Gainesville, FL",
+    location: "Gainesville, FL, USA",
     startDate: "2024-08-02",
     endDate: "Present",
     current: true,
@@ -60,13 +60,14 @@ export const workExperience: WorkExperience[] = [
       "Incorporated prompt engineering with LLMs to assist colleagues extract insights from data, streamlining workflows by 40%.",
       "Developed interactive visualizations in Python (Matplotlib, Seaborn) and Tableau to reveal hidden patterns, enabling real-time trend analysis and driving an 85% improvement in data-driven decision-making accuracy."
     ],
-    technologies: ["Artifical Intelligence (AI)", "Machine Learning", "Python", "NumPy", "Pandas", "scikit-learn", "Matplotlib", "Seaborn", "Tableau", "LLMs", "Prompt Engineering"]
+    technologies: ["Artifical Intelligence (AI)", "Machine Learning", "Python", "NumPy", "Pandas", "scikit-learn", "Matplotlib", "Seaborn", "Tableau", "LLMs", "Prompt Engineering"],
+    companyLogoUrl: "/logos/UF logo.png"
   },
   {
     id: "2",
     title: "Software Engineer – Full Stack Developer",
     company: "Arrow North Design",
-    location: "Raleigh, NC",
+    location: "Raleigh, NC, USA",
     startDate: "2025-01-20",
     endDate: "2025-05-2",
     current: false,
@@ -77,7 +78,8 @@ export const workExperience: WorkExperience[] = [
       "Integrated RESTful APIs in Python (Flask) by implementing microservices-based architecture with efficient API routing and refined NoSQL queries through proper indexing, reducing query latency by 40% and delivering scalable backend services.",
       "Automated CI/CD pipelines using GitHub Actions and Docker for consistent, scalable builds and enforced code quality via ESLint and unit testing, cutting deployment errors by 75% and accelerating product release cycles."
     ],
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase", "OAuth", "JWT Authentication", "Python (Flask)", "RESTful APIs", "NoSQL", "Google Cloud Platform (GCP)", "CI/CD", "GitHub", "Docker", "Vercel", "Git"]
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase", "OAuth", "JWT Authentication", "Python (Flask)", "RESTful APIs", "NoSQL", "Google Cloud Platform (GCP)", "CI/CD", "GitHub", "Docker", "Vercel", "Git"],
+    companyLogoUrl: "/logos/Arrow North Design.jpeg" 
   },
   {
     id: "3",
@@ -94,7 +96,8 @@ export const workExperience: WorkExperience[] = [
       "Developed data validation logic and backend applications in Node.js (Express.js), integrated REST APIs via Python (Django) for scalable endpoints, and optimized MySQL/PostgreSQL queries to boost performance by 45%.",
       "Led agile teams to increase project efficiency by 80% through Jira for task tracking, Confluence for knowledge sharing, and ServiceNow/MS Excel for workflow documentation, increasing stakeholder satisfaction by 97%."
     ],
-    technologies: ["React", "TypeScript", "AngularJS", "Node.js", "Express.js", "Python", "Django", "MySQL", "PostgreSQL", "AWS CloudWatch", "Jira", "Confluence", "ServiceNow", "MS Excel", "HP ALM", "Agile Methodologies", "AWS", "Git", "Project Management", "Leadership", "Team Collaboration", "Communication", "Problem Solving", "Time Management", "Continuous Learning"]
+    technologies: ["React", "TypeScript", "AngularJS", "Node.js", "Express.js", "Python", "Django", "MySQL", "PostgreSQL", "AWS CloudWatch", "Jira", "Confluence", "ServiceNow", "MS Excel", "HP ALM", "Agile Methodologies", "AWS", "Git", "Project Management", "Leadership", "Team Collaboration", "Communication", "Problem Solving", "Time Management", "Continuous Learning"],
+    companyLogoUrl: "/logos/TCS.jpg"
   }
 ]
 

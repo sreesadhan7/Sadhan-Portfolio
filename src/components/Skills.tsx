@@ -16,7 +16,7 @@ export function Skills() {
   const categoryToSkills = (categoryId: string) => skills.filter(s => s.category === categoryId)
 
   return (
-    <section id="skills" className="section-padding bg-gray-50">
+    <section id="skills" className="section-padding bg-gray-50 dark:bg-slate-900">
       <div className="container-max">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -25,18 +25,18 @@ export function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Expertise</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Skills & Expertise</h2>
           <div className="w-24 h-1 bg-portfolio-primary mx-auto"></div>
         </motion.div>
 
         {/* 3 rows, 2 blocks each */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Row 1: Frontend | Backend */}
           {[orderedCategories[0], orderedCategories[1]].map((cat, i) => (
-            <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }} className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center gap-3 mb-4">
+            <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
                 <span className="text-2xl">{cat.icon}</span>
-                <h3 className="text-xl font-semibold text-gray-900">{cat.name}</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">{cat.name}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {categoryToSkills(cat.id).map(skill => (
@@ -50,10 +50,10 @@ export function Skills() {
 
           {/* Row 2: Databases | Cloud */}
           {[orderedCategories[2], orderedCategories[3]].map((cat, i) => (
-            <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }} className="bg-white rounded-xl p-6 shadow">
+            <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{cat.icon}</span>
-                <h3 className="text-xl font-semibold text-gray-900">{cat.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{cat.name}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {categoryToSkills(cat.id).map(skill => (
@@ -67,10 +67,10 @@ export function Skills() {
 
           {/* Row 3: Analytics | Leadership */}
           {[orderedCategories[4], orderedCategories[5]].map((cat, i) => (
-            <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }} className="bg-white rounded-xl p-6 shadow">
+            <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{cat.icon}</span>
-                <h3 className="text-xl font-semibold text-gray-900">{cat.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{cat.name}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {categoryToSkills(cat.id).map(skill => (

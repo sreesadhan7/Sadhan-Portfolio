@@ -11,7 +11,7 @@ export function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-portfolio-light via-white to-portfolio-primary/10">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-portfolio-light via-white to-portfolio-primary/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-portfolio-primary/20 rounded-full blur-3xl animate-float"></div>
@@ -37,14 +37,14 @@ export function Hero() {
               <h2 className="text-lg font-medium text-portfolio-primary mb-2">
                 Hello, I'm
               </h2>
-              <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-4 dark:text-white">
                 {personalInfo.name}
               </h1>
-              <div className="text-2xl lg:text-3xl font-semibold gradient-text mb-4">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-semibold gradient-text mb-4">
                 {personalInfo.title}
               </div>
-              <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0">
-                Transforming ideas into elegant digital solutions with expertise in full-stack development, AI/ML, and cloud technologies. Currently pursuing my Master's at the University of Florida while building innovative applications that make a difference.
+              <p className="text-base sm:text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0 dark:text-gray-300">
+                Transforming complex challenges into elegant digital solutions. With 3+ years of experience in Full-Stack Development, AI/ML, Application Testing and Cloud Technologies, and a Master’s in Computer Science and AI/ML from the University of Florida, I’m on a mission to build technology that inspires and drives change.
               </p>
             </motion.div>
 
@@ -114,12 +114,12 @@ export function Hero() {
           >
             <div className="relative">
               {/* Profile Image */}
-              <div className="relative w-80 h-80 bg-gradient-to-br from-portfolio-primary to-portfolio-secondary rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-2xl animate-glow overflow-hidden">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-gradient-to-br from-portfolio-primary to-portfolio-secondary rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-2xl animate-glow overflow-hidden">
                 <Image
                   src="/MVNC4784.JPG"
                   alt="Sai Sree Sadhan Polimera"
                   fill
-                  sizes="(max-width: 1024px) 20rem, 20rem"
+                  sizes="(max-width: 640px) 16rem, (max-width: 1024px) 18rem, 20rem"
                   priority
                   quality={100}
                   draggable={false}
@@ -152,9 +152,9 @@ export function Hero() {
             onClick={scrollToAbout}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-gray-600 hover:text-portfolio-primary transition-colors duration-300"
+            className="text-gray-600 hover:text-portfolio-primary transition-colors duration-300 dark:text-gray-300"
           >
-            <ChevronDown className="w-6 h-6 mx-auto mb-2" />
+            <ChevronDown className="w-6 h-6 mx-auto mb-2 dark:text-gray-300" />
             <span className="text-sm">Scroll Down</span>
           </motion.button>
         </motion.div>

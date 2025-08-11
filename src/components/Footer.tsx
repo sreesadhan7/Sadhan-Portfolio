@@ -12,16 +12,16 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-slate-900 text-slate-300 relative">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 relative">
       {/* Full-width divider above footer content */}
-      <hr className="absolute left-0 w-full border-slate-700 top-0" style={{ borderTopWidth: 1 }} />
+      <hr className="absolute left-0 w-full border-slate-700 dark:border-slate-800 top-0" style={{ borderTopWidth: 1 }} />
       <div className="container-max py-8 flex flex-col items-center relative z-10">
         {/* Portfolio Heading */}
         <h2 className="text-2xl text-slate-200 mb-1">Sree Sadhan Portfolio</h2>
         {/* Impactful Caption */}
         <p className="text-base text-slate-400 mb-3">Empowering innovation through AI-driven software solutions.</p>
         {/* Full-width divider after caption */}
-        <hr className="absolute left-0 w-full border-slate-700" style={{ borderTopWidth: 1, position: 'relative', marginBottom: '1.5rem' }} />
+        <hr className="absolute left-0 w-full border-slate-700 dark:border-slate-800" style={{ borderTopWidth: 1, position: 'relative', marginBottom: '1.5rem' }} />
         {/* Footer Content */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
           <div className="flex items-center text-sm text-slate-400">

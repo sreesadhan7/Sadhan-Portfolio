@@ -18,13 +18,6 @@ export function Projects() {
   const aiCount = projects.filter(p => p.category.toLowerCase() === 'ai').length
   const webCount = projects.filter(p => p.category.toLowerCase() === 'web').length
 
-  // Debug logging
-  console.log('Selected category:', selectedCategory)
-  console.log('Filtered projects count:', filteredProjects.length)
-  console.log('AI projects count:', aiCount)
-  console.log('Web projects count:', webCount)
-  console.log('Sample project categories:', projects.slice(0, 3).map(p => ({ title: p.title, category: p.category })))
-
   const nextProject = () => {
     setCurrentProjectIndex((prev) => (prev + 1) % filteredProjects.length)
   }
@@ -38,20 +31,20 @@ export function Projects() {
     setCurrentProjectIndex(0)
   }, [selectedCategory])
 
-  // Get the 3 projects to display (with wrapping)
+  // Get the projects to display (with wrapping). We'll render up to 3 and let CSS handle visibility per breakpoint
   const getDisplayProjects = () => {
-    const projects = []
-    for (let i = 0; i < 3; i++) {
+    const result = []
+    for (let i = 0; i < Math.min(3, filteredProjects.length); i++) {
       const index = (currentProjectIndex + i) % filteredProjects.length
-      projects.push(filteredProjects[index])
+      result.push(filteredProjects[index])
     }
-    return projects
+    return result
   }
 
   const displayProjects = getDisplayProjects()
 
   return (
-    <section id="projects" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100">
+    <section id="projects" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container-max">
         {/* Header */}
         <motion.div
@@ -61,8 +54,8 @@ export function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured Projects</h2>
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
             Explore some of my recent work and contributions. Each project showcases different technologies and problem-solving approaches.
           </p>
           
@@ -120,7 +113,7 @@ export function Projects() {
           ))}
         </div>
 
-        {/* Projects Carousel - 3 Projects Display */}
+        {/* Projects Container - Responsive layout */}
         <div className="relative mb-12">
           {/* Navigation Arrows */}
           <button
@@ -139,19 +132,19 @@ export function Projects() {
             <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>
 
-          {/* Projects Container - 3 Projects Side by Side */}
-          <div className="flex justify-center gap-6 px-16">
+          {/* Projects Container - 1/2/3 cards by breakpoint */}
+          <div className="flex justify-center gap-4 sm:gap-6 px-4 sm:px-8 lg:px-16">
             {displayProjects.map((project, index) => (
               <motion.div
                 key={`${project.id}-${currentProjectIndex}`}
                 initial={{ opacity: 0, x: index === 0 ? -20 : index === 2 ? 20 : 0, y: 20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="w-96 h-[600px] flex-shrink-0"
+                className={`${index === 1 ? 'hidden sm:block' : ''} ${index === 2 ? 'hidden lg:block' : ''} w-[90%] sm:w-80 md:w-96 h-[560px] sm:h-[600px] flex-shrink-0`}
               >
-                <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition-all duration-500 transform hover:scale-105 h-full flex flex-col">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:scale-105 h-full flex flex-col">
                   {/* Project Image */}
-                  <div className="h-56 bg-gradient-to-br from-portfolio-primary/20 to-portfolio-primary/5 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                  <div className="h-48 sm:h-56 bg-gradient-to-br from-portfolio-primary/20 to-portfolio-primary/5 flex items-center justify-center relative overflow-hidden flex-shrink-0">
                     <div className="text-7xl opacity-20">
                       {project.category.toLowerCase() === 'ai' ? '🤖' : '🌐'}
                     </div>
@@ -165,20 +158,20 @@ export function Projects() {
                   </div>
 
                   {/* Project Content */}
-                  <div className="p-6 flex-1 flex flex-col min-h-0">
-                    <h4 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 flex-shrink-0">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col min-h-0">
+                    <h4 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 flex-shrink-0">
                       {project.title}
                     </h4>
                     
                     {/* Scrollable content area */}
                     <div className="flex-1 overflow-y-auto min-h-0">
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
                         {project.description}
                       </p>
 
                       {/* Technologies - More visible with bigger container */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 6).map((tech, techIndex) => (
+                        {project.technologies.slice(0, 5).map((tech, techIndex) => (
                           <span
                             key={techIndex}
                             className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-md font-medium"
@@ -186,9 +179,9 @@ export function Projects() {
                             {tech}
                           </span>
                         ))}
-                        {project.technologies.length > 6 && (
+                        {project.technologies.length > 5 && (
                           <span className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-md font-medium">
-                            +{project.technologies.length - 6}
+                            +{project.technologies.length - 5}
                           </span>
                         )}
                       </div>
@@ -196,10 +189,10 @@ export function Projects() {
                       {/* Features */}
                       {project.features && project.features.length > 0 && (
                         <div className="mb-4">
-                          <p className="text-sm text-gray-500 mb-2 font-medium">Key Features:</p>
+                          <p className="text-sm text-gray-500 mb-2 font-medium dark:text-gray-300">Key Features:</p>
                           <ul className="space-y-1.5">
                             {project.features.slice(0, 3).map((feature, featureIndex) => (
-                              <li key={featureIndex} className="text-sm text-gray-600 flex items-center gap-2">
+                              <li key={featureIndex} className="text-sm text-gray-600 flex items-center gap-2 dark:text-gray-300">
                                 <span className="w-2 h-2 bg-portfolio-primary rounded-full"></span>
                                 {feature}
                               </li>

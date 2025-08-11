@@ -120,8 +120,9 @@ export function Contact() {
                 <div>
                   <h4 className="font-medium text-slate-800 dark:text-slate-200">Email</h4>
                   <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="text-slate-600 dark:text-slate-400 hover:text-portfolio-primary underline underline-offset-2 break-all"
+                    href={`mailto:${contactInfo.email}?subject=${encodeURIComponent('Opportunity to Work Together')}`}
+                    className="inline-block relative z-20 pointer-events-auto text-slate-600 dark:text-slate-400 hover:text-portfolio-primary underline underline-offset-2 break-all"
+                    title="Email me"
                   >
                     {contactInfo.email}
                   </a>
@@ -198,8 +199,8 @@ export function Contact() {
               variants={itemVariants}
               className="glass-effect p-8 rounded-2xl border border-slate-200 dark:border-slate-700"
             >
-              <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 mb-6">
-                Send Me a Message
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 dark:text-slate-200 mb-6">
+                Opportunity to Work Together
               </h3>
 
               {isSubmitted ? (

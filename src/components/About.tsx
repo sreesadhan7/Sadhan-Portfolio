@@ -6,7 +6,7 @@ import { personalInfo, education } from '@/data/portfolio'
 
 export function About() {
   return (
-    <section id="about" className="section-padding bg-white">
+    <section id="about" className="section-padding bg-white dark:bg-slate-900">
       <div className="container-max">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -15,11 +15,11 @@ export function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
           <div className="w-24 h-1 bg-portfolio-primary mx-auto"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Personal Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -27,17 +27,20 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Personal Information</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-6">Personal Information</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Award className="w-5 h-5 text-portfolio-primary" />
-                <span className="text-gray-600">Title: {personalInfo.title}</span>
+                <span className="text-gray-600 dark:text-gray-300">Title: {personalInfo.title}</span>
               </div>
             </div>
 
             <div className="mt-8">
-              <h4 className="text-xl font-semibold text-gray-900 mb-4">About</h4>
-              <p className="body-text">{personalInfo.about}</p>
+              <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4">About</h4>
+              <div className="text-lg font-medium text-portfolio-primary mb-2">
+                I design. I code. I innovate.
+              </div>
+              <p className="body-text dark:text-gray-300">{personalInfo.about}</p>
               
               <div className="mt-6">
                 <a
@@ -62,7 +65,7 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Education</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-6">Education</h3>
             <div className="space-y-6">
               {education.map((edu, index) => (
                 <motion.div
@@ -71,31 +74,31 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-gray-50 rounded-lg p-6 border-l-4 border-portfolio-primary hover:shadow-lg transition-all duration-300"
+                  className="bg-gray-50 dark:bg-slate-800 rounded-lg p-6 border-l-4 border-portfolio-primary hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-portfolio-primary rounded-full flex items-center justify-center text-white flex-shrink-0">
                       <GraduationCap className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{edu.degree}</h4>
+                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">{edu.degree}</h4>
                       <p className="text-portfolio-primary font-medium mb-1">{edu.institution}</p>
                       {edu.location && (
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
-                          <MapPin className="w-4 h-4" />
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-1 dark:text-gray-300">
+                          <MapPin className="w-4 h-4 dark:text-gray-300" />
                           <span>{edu.location}</span>
                         </div>
                       )}
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                        <span className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3 dark:text-gray-300">
+                        <span className="flex items-center gap-2 dark:text-gray-300">
+                          <Calendar className="w-4 h-4 dark:text-gray-300" />
                           {new Date(edu.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {new Date(edu.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                         </span>
                         {edu.gpa && <span className="text-portfolio-primary">GPA: {edu.gpa}</span>}
                       </div>
-                      <p className="text-gray-600 text-sm mb-3">{edu.description}</p>
+                      <p className="text-gray-600 text-sm mb-3 dark:text-gray-300">{edu.description}</p>
                       <div>
-                        <h5 className="font-semibold text-gray-800 mb-2 text-sm">Coursework:</h5>
+                        <h5 className="font-semibold text-gray-800 mb-2 text-sm dark:text-gray-300">Coursework:</h5>
                         <div className="flex flex-wrap gap-2">
                           {edu.achievements
                             .flatMap((a) => a.split(',').map((c) => c.trim()).filter(Boolean))

@@ -33,6 +33,7 @@ export interface WorkExperience {
   description: string
   responsibilities: string[]
   technologies: string[]
+  companyLogoUrl?: string
 }
 
 export interface Project {

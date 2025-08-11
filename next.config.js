@@ -12,6 +12,22 @@ const nextConfig = {
         hostname: 'via.placeholder.com',
         pathname: '/**',
       },
+      // Allow some common logo sources
+      {
+        protocol: 'https',
+        hostname: 'www.ufl.edu',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.licdn.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'indiacsr.in',
+        pathname: '/**',
+      },
     ],
   },
   webpack: (config) => {

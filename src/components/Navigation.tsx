@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronUp } from 'lucide-react'
 import { navigationItems } from '@/data/portfolio'
 import { scrollToSection } from '@/lib/utils'
+import { ThemeToggle } from './ThemeToggle'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -52,7 +53,7 @@ export function Navigation() {
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 pointer-events-auto ${
           isScrolled 
-            ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200/20' 
+            ? 'bg-white/90 dark:bg-slate-900/80 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
             : 'bg-transparent'
         }`}
       >
@@ -61,21 +62,21 @@ export function Navigation() {
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold gradient-text cursor-pointer"
+              className="text-xl sm:text-2xl font-bold gradient-text cursor-pointer"
               onClick={scrollToTop}
             >
               Sree Sadhan
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6">
               {navigationItems.map((item) => (
                 <motion.button
                   key={item.href}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium"
+                  className="text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium dark:text-gray-300"
                 >
                   {item.label}
                 </motion.button>
@@ -95,6 +96,7 @@ export function Navigation() {
                 </svg>
                 Resume
               </motion.a>
+              <ThemeToggle />
             </div>
 
             {/* Mobile menu button */}
@@ -102,7 +104,7 @@ export function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-portfolio-primary transition-colors duration-300"
+              className="md:hidden p-2 text-gray-700 hover:text-portfolio-primary transition-colors duration-300 dark:text-gray-300"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>
@@ -127,7 +129,7 @@ export function Navigation() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -20, opacity: 0 }}
                     onClick={() => handleNavClick(item.href)}
-                    className="block w-full text-left text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium py-2"
+                    className="block w-full text-left text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium py-2 dark:text-gray-300"
                   >
                     {item.label}
                   </motion.button>
@@ -151,6 +153,7 @@ export function Navigation() {
                     </svg>
                     Download Resume
                   </a>
+                  <div className="mt-2"><ThemeToggle /></div>
                 </motion.div>
               </div>
             </motion.div>
