@@ -1,207 +1,238 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Github, ChevronLeft, ChevronRight, Code, Globe, Smartphone, Monitor, Brain } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { ChevronLeft, ChevronRight, Github } from 'lucide-react'
 import { projects } from '@/data/portfolio'
 
-const categoryIcons = {
-  web: Globe,
-  mobile: Smartphone,
-  desktop: Monitor,
-  ai: Brain,
-  other: Code
-}
-
-const categoryColors = {
-  web: 'from-blue-500 to-cyan-500',
-  mobile: 'from-green-500 to-emerald-500',
-  desktop: 'from-purple-500 to-pink-500',
-  ai: 'from-orange-500 to-red-500',
-  other: 'from-gray-500 to-slate-500'
-}
-
 export function Projects() {
-  const [startIdx, setStartIdx] = useState(0)
-  const projectsPerPage = 3
-  const totalProjects = projects.length
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'ai' | 'web'>('all')
 
-  // Helper to wrap index correctly for carousel
-  const mod = (n: number, m: number) => ((n % m) + m) % m
+  // Filter projects based on selected category
+  const filteredProjects = selectedCategory === 'all' 
+    ? projects 
+    : projects.filter(p => p.category.toLowerCase() === selectedCategory)
 
-  // Always show up to 3 projects, wrap around if needed
-  let visibleProjects: typeof projects = [];
-  if (totalProjects <= projectsPerPage) {
-    visibleProjects = projects;
-  } else {
-    visibleProjects = Array.from({ length: projectsPerPage }, (_, i) =>
-      projects[mod(startIdx + i, totalProjects)]
-    );
+  // Count projects by category
+  const aiCount = projects.filter(p => p.category.toLowerCase() === 'ai').length
+  const webCount = projects.filter(p => p.category.toLowerCase() === 'web').length
+
+  // Debug logging
+  console.log('Selected category:', selectedCategory)
+  console.log('Filtered projects count:', filteredProjects.length)
+  console.log('AI projects count:', aiCount)
+  console.log('Web projects count:', webCount)
+  console.log('Sample project categories:', projects.slice(0, 3).map(p => ({ title: p.title, category: p.category })))
+
+  const nextProject = () => {
+    setCurrentProjectIndex((prev) => (prev + 1) % filteredProjects.length)
   }
 
-  const handlePrev = () => {
-    if (totalProjects <= projectsPerPage) return;
-    setStartIdx((prev) => {
-      // If not a multiple of projectsPerPage, handle wrap-around correctly
-      let next = prev - projectsPerPage;
-      if (next < 0) {
-        // Go to the last full page
-        const remainder = totalProjects % projectsPerPage;
-        if (remainder === 0) {
-          next = totalProjects - projectsPerPage;
-        } else {
-          next = totalProjects - remainder;
-        }
-      }
-      return next;
-    });
+  const prevProject = () => {
+    setCurrentProjectIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)
   }
-  const handleNext = () => {
-    if (totalProjects <= projectsPerPage) return;
-    setStartIdx((prev) => {
-      let next = prev + projectsPerPage;
-      if (next >= totalProjects) {
-        next = 0;
-      }
-      return next;
-    });
+
+  // Reset to first project when category changes
+  useEffect(() => {
+    setCurrentProjectIndex(0)
+  }, [selectedCategory])
+
+  // Get the 3 projects to display (with wrapping)
+  const getDisplayProjects = () => {
+    const projects = []
+    for (let i = 0; i < 3; i++) {
+      const index = (currentProjectIndex + i) % filteredProjects.length
+      projects.push(filteredProjects[index])
+    }
+    return projects
   }
+
+  const displayProjects = getDisplayProjects()
 
   return (
-    <section id="projects" className="section-padding bg-white">
+    <section id="projects" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container-max">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-2">My Projects</h2>
-          <div className="w-24 h-1 bg-portfolio-primary mx-auto mb-2"></div>
-          <div className="flex justify-center mb-2">
-            <span className="inline-block px-6 py-2 rounded-full bg-portfolio-primary text-white text-lg font-semibold shadow-md border-2 border-portfolio-primary" style={{ minWidth: 60 }}>
-              All Projects: {totalProjects}
-            </span>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            Explore some of my recent work and contributions. Each project showcases different technologies and problem-solving approaches.
+          </p>
+          
+          {/* Category Buttons */}
+          <div className="flex items-center justify-center gap-6 mb-8 flex-wrap">
+            <button
+              onClick={() => setSelectedCategory('all')}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 inline-flex items-center gap-2 ${
+                selectedCategory === 'all' 
+                  ? 'bg-portfolio-primary text-white border-portfolio-primary' 
+                  : 'bg-white text-portfolio-primary border-portfolio-primary/30 hover:bg-portfolio-primary/5'
+              }`}
+            >
+              <Github className="w-5 h-5" />
+              <span>All Projects: {projects.length}</span>
+            </button>
+            
+            <button
+              onClick={() => setSelectedCategory('ai')}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 ${
+                selectedCategory === 'ai' 
+                  ? 'bg-blue-500 text-white border-blue-500' 
+                  : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'
+              }`}
+            >
+              AI: {aiCount}
+            </button>
+            
+            <button
+              onClick={() => setSelectedCategory('web')}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 ${
+                selectedCategory === 'web' 
+                  ? 'bg-green-500 text-white border-green-500' 
+                  : 'bg-white text-green-600 border-green-200 hover:bg-green-50'
+              }`}
+            >
+              Responsive Web: {webCount}
+            </button>
           </div>
         </motion.div>
 
-        <div className="flex items-center justify-center gap-4">
-          {totalProjects > projectsPerPage && (
+        {/* Project Indicators - Moved above the carousel */}
+        <div className="flex justify-center gap-2 mb-6">
+          {filteredProjects.map((_, index) => (
             <button
-              aria-label="Previous"
-              onClick={handlePrev}
-              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 shadow transition focus:outline-none focus:ring-2 focus:ring-portfolio-primary"
-              tabIndex={0}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-          )}
+              key={index}
+              onClick={() => setCurrentProjectIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                index === currentProjectIndex
+                  ? 'bg-portfolio-primary w-6'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to project ${index + 1}`}
+            />
+          ))}
+        </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={startIdx}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.4 }}
-              className={`grid grid-cols-1 md:grid-cols-${projectsPerPage} gap-8 w-full max-w-6xl`}
-            >
-              {visibleProjects.map((project, index) => {
-                const IconComponent = categoryIcons[project.category]
-                const gradientClass = categoryColors[project.category]
-                return (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
-                  >
-                    {/* Project Image */}
-                    <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <IconComponent className="w-16 h-16 text-gray-400" />
-                      </div>
-                      <div className="absolute top-4 right-4">
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${gradientClass}`}>
-                          {project.category.toUpperCase()}
-                        </span>
-                      </div>
+        {/* Projects Carousel - 3 Projects Display */}
+        <div className="relative mb-12">
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevProject}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/30 backdrop-blur-md rounded-full shadow-lg hover:bg-white/50 transition-all duration-200 hover:scale-110 border border-white/20 hover:shadow-xl"
+            aria-label="Previous project"
+          >
+            <ChevronLeft className="w-6 h-6 text-gray-700" />
+          </button>
+
+          <button
+            onClick={nextProject}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/30 backdrop-blur-md rounded-full shadow-lg hover:bg-white/50 transition-all duration-200 hover:scale-110 border border-white/20 hover:shadow-xl"
+            aria-label="Next project"
+          >
+            <ChevronRight className="w-6 h-6 text-gray-700" />
+          </button>
+
+          {/* Projects Container - 3 Projects Side by Side */}
+          <div className="flex justify-center gap-6 px-16">
+            {displayProjects.map((project, index) => (
+              <motion.div
+                key={`${project.id}-${currentProjectIndex}`}
+                initial={{ opacity: 0, x: index === 0 ? -20 : index === 2 ? 20 : 0, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="w-96 h-[600px] flex-shrink-0"
+              >
+                <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition-all duration-500 transform hover:scale-105 h-full flex flex-col">
+                  {/* Project Image */}
+                  <div className="h-56 bg-gradient-to-br from-portfolio-primary/20 to-portfolio-primary/5 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                    <div className="text-7xl opacity-20">
+                      {project.category.toLowerCase() === 'ai' ? '🤖' : '🌐'}
                     </div>
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium rounded-full text-gray-700 capitalize">
+                        {project.category.toLowerCase() === 'ai' ? 'AI' : project.category}
+                      </span>
+                    </div>
+                  </div>
 
-                    {/* Project Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-portfolio-primary transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      <p className="body-text mb-4 line-clamp-3">
+                  {/* Project Content */}
+                  <div className="p-6 flex-1 flex flex-col min-h-0">
+                    <h4 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 flex-shrink-0">
+                      {project.title}
+                    </h4>
+                    
+                    {/* Scrollable content area */}
+                    <div className="flex-1 overflow-y-auto min-h-0">
+                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                         {project.description}
                       </p>
-                      {/* Technologies */}
+
+                      {/* Technologies - More visible with bigger container */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 4).map((tech, idx) => (
+                        {project.technologies.slice(0, 6).map((tech, techIndex) => (
                           <span
-                            key={idx}
-                            className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md"
+                            key={techIndex}
+                            className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-md font-medium"
                           >
                             {tech}
                           </span>
                         ))}
-                        {project.technologies.length > 4 && (
-                          <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md">
-                            +{project.technologies.length - 4} more
+                        {project.technologies.length > 6 && (
+                          <span className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-md font-medium">
+                            +{project.technologies.length - 6}
                           </span>
                         )}
                       </div>
-                      {/* Features */}
-                      <div className="mb-4">
-                        <h4 className="font-medium text-gray-900 mb-2">Key Features:</h4>
-                        <ul className="space-y-1">
-                          {project.features.slice(0, 3).map((feature, idx) => (
-                            <li key={idx} className="body-text flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full mt-2 flex-shrink-0"></div>
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      {/* Project Links */}
-                      <div className="flex gap-3">
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`View code for ${project.title}`}
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-portfolio-primary"
-                            tabIndex={0}
-                          >
-                            <Github className="w-4 h-4" />
-                            Code
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
-          </AnimatePresence>
 
-          {totalProjects > projectsPerPage && (
-            <button
-              aria-label="Next"
-              onClick={handleNext}
-              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 shadow transition focus:outline-none focus:ring-2 focus:ring-portfolio-primary"
-              tabIndex={0}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          )}
+                      {/* Features */}
+                      {project.features && project.features.length > 0 && (
+                        <div className="mb-4">
+                          <p className="text-sm text-gray-500 mb-2 font-medium">Key Features:</p>
+                          <ul className="space-y-1.5">
+                            {project.features.slice(0, 3).map((feature, featureIndex) => (
+                              <li key={featureIndex} className="text-sm text-gray-600 flex items-center gap-2">
+                                <span className="w-2 h-2 bg-portfolio-primary rounded-full"></span>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Action Button - Always at bottom */}
+                    <div className="w-full pt-4 mt-4 border-t border-gray-100 flex-shrink-0">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium"
+                      >
+                        <Github className="w-4 h-4" />
+                        View Code
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Project Counter */}
+        <div className="text-center text-gray-600">
+          <span className="font-medium">{currentProjectIndex + 1}</span> of {filteredProjects.length} projects
         </div>
       </div>
     </section>
   )
-} 
+}

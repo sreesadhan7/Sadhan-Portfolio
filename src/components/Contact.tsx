@@ -13,7 +13,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   globe: Globe
 }
 
-export default function Contact() {
+export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

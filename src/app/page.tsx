@@ -10,9 +10,9 @@ const About = dynamic(() => import('@/components/About').then(mod => ({ default:
 const Experience = dynamic(() => import('@/components/Experience').then(mod => ({ default: mod.Experience })), { ssr: false, loading: () => <div /> })
 const Projects = dynamic(() => import('@/components/Projects').then(mod => ({ default: mod.Projects })), { ssr: false, loading: () => <div /> })
 const Skills = dynamic(() => import('@/components/Skills').then(mod => ({ default: mod.Skills })), { ssr: false, loading: () => <div /> })
-const Contact = dynamic(() => import('@/components/Contact').then(mod => ({ default: mod.default })), { ssr: false, loading: () => <div /> })
-const Footer = dynamic(() => import('@/components/Footer').then(mod => ({ default: mod.default })), { ssr: false, loading: () => <div /> })
-const FloatingParticles = dynamic(() => import('@/components/FloatingParticles').then(mod => ({ default: mod.default })), { ssr: false, loading: () => <div /> })
+const Contact = dynamic(() => import('@/components/Contact').then(mod => ({ default: mod.Contact })), { ssr: false, loading: () => <div /> })
+const Footer = dynamic(() => import('@/components/Footer').then(mod => ({ default: mod.Footer })), { ssr: false, loading: () => <div /> })
+const FloatingParticles = dynamic(() => import('@/components/FloatingParticles').then(mod => ({ default: mod.FloatingParticles })), { ssr: false, loading: () => <div /> })
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)

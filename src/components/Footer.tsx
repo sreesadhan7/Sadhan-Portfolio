@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUp, Heart } from 'lucide-react'
 
-export default function Footer() {
+export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const scrollToTop = () => {

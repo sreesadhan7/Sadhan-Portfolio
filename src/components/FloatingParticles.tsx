@@ -92,7 +92,7 @@ function SnowField({ count = 700 }: { count?: number }) {
   )
 }
 
-export default function FloatingParticles() {
+export function FloatingParticles() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0" aria-hidden>
       <Canvas

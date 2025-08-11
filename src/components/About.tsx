@@ -91,7 +91,7 @@ export function About() {
                           <Calendar className="w-4 h-4" />
                           {new Date(edu.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {new Date(edu.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                         </span>
-                        {edu.gpa && <span className="font-semibold text-portfolio-primary">GPA: {edu.gpa}</span>}
+                        {edu.gpa && <span className="text-portfolio-primary">GPA: {edu.gpa}</span>}
                       </div>
                       <p className="text-gray-600 text-sm mb-3">{edu.description}</p>
                       <div>

@@ -119,7 +119,7 @@ export const projects: Project[] = [
     title: "Cat Fact Tracker",
     description: "Cat Fact Tracker is a simple app that fetches, displays, and manages interesting cat facts. Users can view random facts, track favorites, and access a history of previously viewed facts.",
     image: "/api/placeholder/600/400",
-    technologies: ["React", "Python", "Next.js", "TypeScript", "RESTful API", "SQL", "Git", "FastAPI"],
+    technologies: ["Python", "Next.js", "TypeScript", "Git","React", "RESTful API", "SQL", "FastAPI"],
     githubUrl: "https://github.com/sreesadhan7/cat-fact-tracker",
     features: [
       "98% API uptime",
@@ -160,7 +160,7 @@ export const projects: Project[] = [
   },
   {
     id: "5",
-    title: "Email-System-Sender",
+    title: "Email System Sender",
     description: "An email system sender built using AngularJS, Node.js, MySQL, and REST API. The webpage allows users to enter their name and email address into a form, storing the data in a MySQL database and sending a confirmation email to the provided address.",
     image: "/api/placeholder/600/400",
     technologies: ["AngularJS", "Node.js", "MySQL", "REST API"],
@@ -174,7 +174,7 @@ export const projects: Project[] = [
   },
   {
     id: "6",
-    title: "Data-Clustering-Analysis-and-Visualization-Pipeline",
+    title: "Data Engineering Pipeline",
     description: "A Python-based application integrating data visualization with a user-friendly web interface. Processes incident data extracted from PDFs issued by the Norman, Oklahoma Police Department to create meaningful insights through clustering and comparison visualizations.",
     image: "/api/placeholder/600/400",
     technologies: ["Python", "Flask", "scikit-learn", "Visualization"],
@@ -188,7 +188,7 @@ export const projects: Project[] = [
   },
   {
     id: "7",
-    title: "The_Unredactor",
+    title: "The Unredactor",
     description: "A Python application that automates the recovery of redacted names in textual data. Processes training and test datasets, learning patterns from context to accurately predict and replace redacted names.",
     image: "/api/placeholder/600/400",
     technologies: ["Python", "NLP", "spaCy"],
@@ -202,7 +202,7 @@ export const projects: Project[] = [
   },
   {
     id: "8",
-    title: "Personal-Data-Censoring",
+    title: "Personal Data Censoring",
     description: "A Python-based redaction system that automates the identification and censoring of sensitive information within text files. The application leverages a global dictionary and spaCy pipeline for efficient data processing.",
     image: "/api/placeholder/600/400",
     technologies: ["Python", "spaCy", "NLP"],
@@ -216,7 +216,7 @@ export const projects: Project[] = [
   },
   {
     id: "9",
-    title: "Data-Collector_PDF-to-SQL-Automation",
+    title: "Data Automation Pipeline",
     description: "Automates the extraction of data from PDFs and inserts it into an SQL database.",
     image: "/api/placeholder/600/400",
     technologies: ["Python", "PDF Extraction", "SQL", "Automation"],
@@ -230,7 +230,7 @@ export const projects: Project[] = [
   },
   {
     id: "10",
-    title: "Data_Extraction-Processing",
+    title: "Data Extraction Processing",
     description: "A project dedicated to extracting and processing data, leveraging APIs and Python for robust data workflows.",
     image: "/api/placeholder/600/400",
     technologies: ["Python", "API", "Data Processing"],
@@ -244,7 +244,7 @@ export const projects: Project[] = [
   },
   {
     id: "11",
-    title: "Global Warming - Deep Dive (dbback & dbfront)",
+    title: "Global Warming - Deep Dive",
     description: "An in-depth analysis of global warming data, including both backend and frontend components for data visualization and management.",
     image: "/api/placeholder/600/400",
     technologies: ["Python", "React", "Database", "Visualization"],
@@ -258,7 +258,7 @@ export const projects: Project[] = [
   },
   {
     id: "12",
-    title: "Airline-FAQ",
+    title: "Airline FAQ",
     description: "A frequently asked questions system for airlines, built using AWS RDS & Lambda.",
     image: "/api/placeholder/600/400",
     technologies: ["EJS", "AWS RDS", "Lambda"],
@@ -272,7 +272,7 @@ export const projects: Project[] = [
   },
   {
     id: "13",
-    title: "Guide-Me",
+    title: "Guide Me",
     description: "A guide allocation project made as per DBMS course requirements.",
     image: "/api/placeholder/600/400",
     technologies: ["EJS", "DBMS", "Web App"],
@@ -286,7 +286,7 @@ export const projects: Project[] = [
   },
   {
     id: "14",
-    title: "Elective-Management-System",
+    title: "Elective Management System",
     description: "An online Elective Management system built in NuxtJS and Firestore.",
     image: "/api/placeholder/600/400",
     technologies: ["Vue.js", "NuxtJS", "Firestore"],
