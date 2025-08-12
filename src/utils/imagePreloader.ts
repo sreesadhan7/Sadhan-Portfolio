@@ -71,8 +71,10 @@ class ImagePreloader {
     // Preload high priority images first
     await this.preloadImages(highPriority, { ...options, priority: true })
     
-    // Then preload low priority images in the background
-    this.preloadImages(lowPriority, { ...options, priority: false }).catch(console.warn)
+    // Then preload low priority images in the background with delay
+    setTimeout(() => {
+      this.preloadImages(lowPriority, { ...options, priority: false }).catch(console.warn)
+    }, 1000) // 1 second delay to avoid blocking
   }
 
   /**

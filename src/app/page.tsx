@@ -82,7 +82,7 @@ export default function Home() {
           const img = new Image()
           img.onload = resolve
           img.onerror = resolve
-          img.src = '/projectImages/agentic-ai-systems.png'
+          img.src = '/projectImages/agentic-ai-systems.webp'
         })
       ]
 

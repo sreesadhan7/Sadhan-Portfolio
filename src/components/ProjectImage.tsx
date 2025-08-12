@@ -95,7 +95,7 @@ export function ProjectImage({ src, alt, title, category, priority = false, eage
         }
       },
       {
-        rootMargin: '100px', // Increased from 50px for earlier loading
+        rootMargin: '50px', // Reduced from 100px for better performance
         threshold: 0.1
       }
     )

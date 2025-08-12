@@ -79,8 +79,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" sizes="any" />
         <link rel="apple-touch-icon" href="/favicon.png" />
         
-        {/* Preload only first project image */}
-        <link rel="preload" href="/projectImages/agentic-ai-systems.png" as="image" type="image/png" />
+        {/* Preload only first project image - FIXED: use .webp */}
+        <link rel="preload" href="/projectImages/agentic-ai-systems.webp" as="image" type="image/webp" />
         
         {/* DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
@@ -88,8 +88,16 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//github.com" />
         <link rel="preconnect" href="https://github.com" crossOrigin="anonymous" />
         
-        {/* Critical CSS hint */}
-        <link rel="preload" href="/MVNC4784.JPG" as="image" />
+        {/* Critical CSS inline for faster rendering */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+            html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+            body{margin:0;line-height:inherit}
+            :root{--background:0 0% 100%;--foreground:222.2 84% 4.9%}
+            .dark{--background:222.2 84% 4.9%;--foreground:210 40% 98%}
+          `
+        }} />
         
         {/* ✅ Set theme before React hydrates - Optimized */}
         <Script id="theme-init" strategy="beforeInteractive">
@@ -104,11 +112,15 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.className} ${inter.variable} antialiased bg-background text-foreground dark:bg-slate-900 dark:text-slate-100 font-sans`} suppressHydrationWarning>
-        <ImagePrefetch priority={6} />
+        <ImagePrefetch priority={2} />
         <PerformanceMonitor />
         {children}
-        <SpeedInsights />
-        <Analytics />
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <SpeedInsights />
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   )

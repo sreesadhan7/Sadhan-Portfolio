@@ -40,7 +40,7 @@ function createSnowflakeTexture(size = 64): THREE.CanvasTexture {
   return texture
 }
 
-function SnowField({ count = 700 }: { count?: number }) {
+function SnowField({ count = 300 }: { count?: number }) { // Reduced from 700 to 300
   const pointsRef = useRef<THREE.Points>(null)
   const positions = useMemo(() => {
     const array = new Float32Array(count * 3)

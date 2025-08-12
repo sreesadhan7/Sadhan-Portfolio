@@ -12,24 +12,24 @@ interface ImagePrefetchProps {
  * Component that prefetches project images for better performance
  * Should be included in the layout or main page to start preloading early
  */
-export function ImagePrefetch({ priority = 5 }: ImagePrefetchProps) { // Increased from 3 to 5
+export function ImagePrefetch({ priority = 3 }: ImagePrefetchProps) { // Reduced back to 3 for better performance
   useEffect(() => {
     const preloadProjectImages = async () => {
       try {
         // Get all project images
         const allImages = projects.map(project => project.image)
         
-        // Split into high and low priority - more aggressive preloading
+        // Split into high and low priority - be more conservative
         const highPriorityImages = allImages.slice(0, priority)
         const lowPriorityImages = allImages.slice(priority)
 
-        // Preload with priority queue
+        // Preload with priority queue, but delay low priority
         await imagePreloader.preloadImagesWithPriority(
           highPriorityImages,
           lowPriorityImages,
           {
             sizes: "(max-width: 475px) 95vw, (max-width: 640px) 90vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 400px",
-            quality: 85
+            quality: 75 // Reduced quality for faster loading
           }
         )
 
@@ -39,8 +39,9 @@ export function ImagePrefetch({ priority = 5 }: ImagePrefetchProps) { // Increas
       }
     }
 
-    // Start preloading immediately, no delay
-    preloadProjectImages()
+    // Add delay to prevent blocking critical resources
+    const timeoutId = setTimeout(preloadProjectImages, 500)
+    return () => clearTimeout(timeoutId)
   }, [priority])
 
   // This component doesn't render anything

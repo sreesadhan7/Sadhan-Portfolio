@@ -13,14 +13,15 @@ const nextConfig = {
   
   // Image optimization
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [475, 640, 768, 1024, 1280, 1536, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp'], // Removed AVIF to reduce processing time
+    deviceSizes: [475, 640, 768, 1024, 1280, 1536],
+    imageSizes: [32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year cache for images
     dangerouslyAllowSVG: false,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: [],
+    loader: 'default',
     remotePatterns: [
       {
         protocol: 'https',

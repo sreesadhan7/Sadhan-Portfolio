@@ -136,8 +136,8 @@ export function Projects() {
                     alt={`${project.title} project screenshot`}
                     title={project.title}
                     category={project.category}
-                    priority={index === 0}
-                    eager={index <= 1 || isImagePreloaded(project.image)}
+                    priority={index === 0} // Only first image gets priority
+                    eager={index === 0 || isImagePreloaded(project.image)} // Only eager load the first image or preloaded ones
                   />
 
                   {/* Project Content */}

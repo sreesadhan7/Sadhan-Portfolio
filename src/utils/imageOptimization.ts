@@ -35,9 +35,9 @@ export function getImageQuality(
   connectionQuality: 'slow' | 'normal' | 'fast' = 'normal'
 ): number {
   const qualityMatrix = {
-    slow: { high: 60, normal: 50, low: 40 },
-    normal: { high: 85, normal: 75, low: 65 },
-    fast: { high: 95, normal: 85, low: 75 }
+    slow: { high: 50, normal: 40, low: 30 },     // More aggressive compression for slow connections
+    normal: { high: 75, normal: 65, low: 55 },  // Reduced quality for faster loading
+    fast: { high: 85, normal: 75, low: 65 }     // Still good quality on fast connections
   }
   
   return qualityMatrix[connectionQuality][priority]
