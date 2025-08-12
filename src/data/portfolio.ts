@@ -6,7 +6,7 @@ export const personalInfo: PersonalInfo = {
   email: "sreesadhan.polimera11@gmail.com",
   phone: "+1 (352) 756 0268",
   about: "I'm a passionate Software Engineer with expertise in Full-Stack Development, AI/ML, Data Engineering & Analysis, Application Testing and cloud technologies. I enjoy transforming complex challenges into scalable and user-friendly solutions, and I’m driven by a constant curiosity to learn and apply the latest advancements in technology. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or watching anime.",
-  avatar: "/api/placeholder/400/400"
+  avatar: "/MVNC4784.JPG"
 }
 
 export const education: Education[] = [
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     id: "1",
     title: "Agentic AI Systems",
     description: "A collection of automated AI-powered solutions built using the MindStudio Platform, designed to solve real-world problems and streamline everyday tasks.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/agentic-ai-systems.webp",
     technologies: ["MindStudio", "n8n", "RAG", "LLMs", "AI Agents", "Prompt Engineering", "Automation"],
     githubUrl: "https://github.com/sreesadhan7/AI-Agents-Portfolio",
     features: [
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     id: "2",
     title: "Cat Fact Tracker",
     description: "Cat Fact Tracker is a simple app that fetches, displays, and manages interesting cat facts. Users can view random facts, track favorites, and access a history of previously viewed facts.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/cat-fact-tracker.webp",
     technologies: ["Python", "Next.js", "TypeScript", "Git","React", "RESTful API", "SQL", "FastAPI"],
     githubUrl: "https://github.com/sreesadhan7/cat-fact-tracker",
     features: [
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     id: "3",
     title: "Sadhan Portfolio",
     description: "Personal Portfolio consisting my experience and projects.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/sadhan-portfolio.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     githubUrl: "https://github.com/sreesadhan7/Sadhan-Portfolio",
     features: [
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     id: "4",
     title: "Solana Crypto Transaction",
     description: "A professional-grade Solana portfolio dashboard that allows users to connect their wallets and view balances, tokens, and transaction history. Demonstrates modern React development with Web3 integration, featuring a polished purple/violet theme and full mobile responsiveness.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/solana-crypto-transaction.webp",
     technologies: ["Solana", "React", "Next.js", "Web3", "TypeScript"],
     githubUrl: "https://github.com/sreesadhan7/Solana-Crypto-Transaction-dashboard",
     features: [
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     id: "5",
     title: "Email System Sender",
     description: "An email system sender built using AngularJS, Node.js, MySQL, and REST API. The webpage allows users to enter their name and email address into a form, storing the data in a MySQL database and sending a confirmation email to the provided address.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/email-system-sender.webp",
     technologies: ["AngularJS", "Node.js", "MySQL", "REST API"],
     githubUrl: "https://github.com/sreesadhan7/Email-System-Sender",
     features: [
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     id: "6",
     title: "Data Engineering Pipeline",
     description: "A Python-based application integrating data visualization with a user-friendly web interface. Processes incident data extracted from PDFs issued by the Norman, Oklahoma Police Department to create meaningful insights through clustering and comparison visualizations.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/data-engineering-pipeline.webp",
     technologies: ["Python", "Flask", "scikit-learn", "Visualization"],
     githubUrl: "https://github.com/sreesadhan7/Data-Clustering-Analysis-and-Visualization-Pipeline",
     features: [
@@ -193,7 +193,7 @@ export const projects: Project[] = [
     id: "7",
     title: "The Unredactor",
     description: "A Python application that automates the recovery of redacted names in textual data. Processes training and test datasets, learning patterns from context to accurately predict and replace redacted names.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/the-unredactor.webp",
     technologies: ["Python", "NLP", "spaCy"],
     githubUrl: "https://github.com/sreesadhan7/The_Unredactor",
     features: [
@@ -207,7 +207,7 @@ export const projects: Project[] = [
     id: "8",
     title: "Personal Data Censoring",
     description: "A Python-based redaction system that automates the identification and censoring of sensitive information within text files. The application leverages a global dictionary and spaCy pipeline for efficient data processing.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/personal-data-censoring.webp",
     technologies: ["Python", "spaCy", "NLP"],
     githubUrl: "https://github.com/sreesadhan7/Personal-Data-Censoring",
     features: [
@@ -221,7 +221,7 @@ export const projects: Project[] = [
     id: "9",
     title: "Data Automation Pipeline",
     description: "Automates the extraction of data from PDFs and inserts it into an SQL database.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/data-automation-pipeline.webp",
     technologies: ["Python", "PDF Extraction", "SQL", "Automation"],
     githubUrl: "https://github.com/sreesadhan7/Data-Collector_PDF-to-SQL-Automation",
     features: [
@@ -235,7 +235,7 @@ export const projects: Project[] = [
     id: "10",
     title: "Data Extraction Processing",
     description: "A project dedicated to extracting and processing data, leveraging APIs and Python for robust data workflows.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/data-extraction-processing.webp",
     technologies: ["Python", "API", "Data Processing"],
     githubUrl: "https://github.com/sreesadhan7/Data_Extraction-Processing",
     features: [
@@ -249,7 +249,7 @@ export const projects: Project[] = [
     id: "11",
     title: "Global Warming - Deep Dive",
     description: "An in-depth analysis of global warming data, including both backend and frontend components for data visualization and management.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/global-warming-deep-dive.webp",
     technologies: ["Python", "React", "Database", "Visualization"],
     githubUrl: "https://github.com/sreesadhan7/dbBack",
     features: [
@@ -263,7 +263,7 @@ export const projects: Project[] = [
     id: "12",
     title: "Airline FAQ",
     description: "A frequently asked questions system for airlines, built using AWS RDS & Lambda.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/airline-faq.webp",
     technologies: ["EJS", "AWS RDS", "Lambda"],
     githubUrl: "https://github.com/sreesadhan7/Airline-FAQ",
     features: [
@@ -277,7 +277,7 @@ export const projects: Project[] = [
     id: "13",
     title: "Guide Me",
     description: "A guide allocation project made as per DBMS course requirements.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/guide-me.webp",
     technologies: ["EJS", "DBMS", "Web App"],
     githubUrl: "https://github.com/sreesadhan7/Guide-Me",
     features: [
@@ -291,7 +291,7 @@ export const projects: Project[] = [
     id: "14",
     title: "Elective Management System",
     description: "An online Elective Management system built in NuxtJS and Firestore.",
-    image: "/api/placeholder/600/400",
+    image: "/projectImages/elective-management-system.webp",
     technologies: ["Vue.js", "NuxtJS", "Firestore"],
     githubUrl: "https://github.com/sreesadhan7/Elective-Management-System",
     features: [

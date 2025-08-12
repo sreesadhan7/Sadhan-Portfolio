@@ -1,6 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Performance optimizations
+  experimental: {
+    // optimizeCss: true, // Temporarily disabled due to critters dependency issue
+    optimizePackageImports: ['framer-motion', '@react-email/components', 'lucide-react'],
+  },
+  
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
+  // Image optimization
   images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [475, 640, 768, 1024, 1280, 1536, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 year cache for images
+    dangerouslyAllowSVG: false,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: [],
     remotePatterns: [
       {
         protocol: 'https',
@@ -30,7 +50,9 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
+  
+  // Webpack optimizations
+  webpack: (config, { dev, isServer }) => {
     // Handle 3D model files if needed
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
@@ -44,7 +66,60 @@ const nextConfig = {
       path: false,
     };
     
+    // Production optimizations
+    if (!dev && !isServer) {
+      // Bundle analyzer (uncomment when needed)
+      // const withBundleAnalyzer = require('@next/bundle-analyzer')({
+      //   enabled: process.env.ANALYZE === 'true',
+      // })
+      
+      // Tree shaking optimizations
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+    }
+    
     return config;
+  },
+  
+  // Headers for performance
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        source: '/fonts/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/(.*\\.(?:ico|png|jpg|jpeg|gif|webp|svg|avif)$)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
 }
 

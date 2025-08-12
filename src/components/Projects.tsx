@@ -1,47 +1,50 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useMemo } from 'react'
 import { ChevronLeft, ChevronRight, Github } from 'lucide-react'
 import { projects } from '@/data/portfolio'
+import { ProjectImage } from './ProjectImage'
+import { useProjectImagePreloader } from '@/utils/imagePreloader'
+import { useCategoryImagePrefetch } from './ImagePrefetch'
+import { useOptimizedProjectNavigation, useOptimizedCategoryNavigation } from '@/hooks/useOptimizedNavigation'
 
 export function Projects() {
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'ai' | 'web'>('all')
+  // Category navigation with smooth transitions
+  const { category: selectedCategory, changeCategory, isTransitioning: isCategoryTransitioning } = 
+    useOptimizedCategoryNavigation<'all' | 'ai' | 'web'>('all')
 
   // Filter projects based on selected category
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
-    : projects.filter(p => p.category.toLowerCase() === selectedCategory)
+  const filteredProjects = useMemo(() => 
+    selectedCategory === 'all' 
+      ? projects 
+      : projects.filter(p => p.category.toLowerCase() === selectedCategory),
+    [selectedCategory]
+  )
+
+  // Optimized project navigation
+  const {
+    currentIndex: currentProjectIndex,
+    isTransitioning: isProjectTransitioning,
+    navigateToNext: nextProject,
+    navigateToPrevious: prevProject,
+    getDisplayProjects,
+    isImagePreloaded
+  } = useOptimizedProjectNavigation({
+    projects: filteredProjects,
+    preloadCount: 6, // Increased from 4 to 6
+    transitionDelay: 100 // Reduced from 150 to 100 for faster transitions
+  })
+
+  // Prefetch images for current category
+  useCategoryImagePrefetch(selectedCategory)
 
   // Count projects by category
   const aiCount = projects.filter(p => p.category.toLowerCase() === 'ai').length
   const webCount = projects.filter(p => p.category.toLowerCase() === 'web').length
 
-  const nextProject = () => {
-    setCurrentProjectIndex((prev) => (prev + 1) % filteredProjects.length)
-  }
-
-  const prevProject = () => {
-    setCurrentProjectIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)
-  }
-
-  // Reset to first project when category changes
-  useEffect(() => {
-    setCurrentProjectIndex(0)
-  }, [selectedCategory])
-
-  // Get the projects to display (with wrapping). We'll render up to 3 and let CSS handle visibility per breakpoint
-  const getDisplayProjects = () => {
-    const result = []
-    for (let i = 0; i < Math.min(3, filteredProjects.length); i++) {
-      const index = (currentProjectIndex + i) % filteredProjects.length
-      result.push(filteredProjects[index])
-    }
-    return result
-  }
-
-  const displayProjects = getDisplayProjects()
+  // Get display projects with enhanced loading states
+  const displayProjects = getDisplayProjects(3)
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800">
@@ -62,7 +65,7 @@ export function Projects() {
           {/* Category Buttons */}
           <div className="flex items-center justify-center gap-6 mb-8 flex-wrap">
             <button
-              onClick={() => setSelectedCategory('all')}
+              onClick={() => changeCategory('all')}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 inline-flex items-center gap-2 ${
                 selectedCategory === 'all' 
                   ? 'bg-portfolio-primary text-white border-portfolio-primary' 
@@ -74,7 +77,7 @@ export function Projects() {
             </button>
             
             <button
-              onClick={() => setSelectedCategory('ai')}
+              onClick={() => changeCategory('ai')}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 ${
                 selectedCategory === 'ai' 
                   ? 'bg-blue-500 text-white border-blue-500' 
@@ -85,7 +88,7 @@ export function Projects() {
             </button>
             
             <button
-              onClick={() => setSelectedCategory('web')}
+              onClick={() => changeCategory('web')}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 ${
                 selectedCategory === 'web' 
                   ? 'bg-green-500 text-white border-green-500' 
@@ -96,22 +99,6 @@ export function Projects() {
             </button>
           </div>
         </motion.div>
-
-        {/* Project Indicators - Moved above the carousel */}
-        <div className="flex justify-center gap-2 mb-6">
-          {filteredProjects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentProjectIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                index === currentProjectIndex
-                  ? 'bg-portfolio-primary w-6'
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-              aria-label={`Go to project ${index + 1}`}
-            />
-          ))}
-        </div>
 
         {/* Projects Container - Responsive layout */}
         <div className="relative mb-12">
@@ -133,29 +120,25 @@ export function Projects() {
           </button>
 
           {/* Projects Container - 1/2/3 cards by breakpoint */}
-          <div className="flex justify-center gap-4 sm:gap-6 px-4 sm:px-8 lg:px-16">
+          <div className="flex justify-center gap-3 xs:gap-4 sm:gap-6 px-2 xs:px-4 sm:px-8 lg:px-16">
             {displayProjects.map((project, index) => (
               <motion.div
                 key={`${project.id}-${currentProjectIndex}`}
                 initial={{ opacity: 0, x: index === 0 ? -20 : index === 2 ? 20 : 0, y: 20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`${index === 1 ? 'hidden sm:block' : ''} ${index === 2 ? 'hidden lg:block' : ''} w-[90%] sm:w-80 md:w-96 h-[560px] sm:h-[600px] flex-shrink-0`}
+                className={`${index === 1 ? 'hidden sm:block' : ''} ${index === 2 ? 'hidden lg:block' : ''} w-[95%] xs:w-[90%] sm:w-80 md:w-96 lg:w-[400px] h-[500px] xs:h-[540px] sm:h-[580px] md:h-[600px] lg:h-[620px] flex-shrink-0`}
               >
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:scale-105 h-full flex flex-col">
                   {/* Project Image */}
-                  <div className="h-48 sm:h-56 bg-gradient-to-br from-portfolio-primary/20 to-portfolio-primary/5 flex items-center justify-center relative overflow-hidden flex-shrink-0">
-                    <div className="text-7xl opacity-20">
-                      {project.category.toLowerCase() === 'ai' ? '🤖' : '🌐'}
-                    </div>
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium rounded-full text-gray-700 capitalize">
-                        {project.category.toLowerCase() === 'ai' ? 'AI' : project.category}
-                      </span>
-                    </div>
-                  </div>
+                  <ProjectImage
+                    src={project.image}
+                    alt={`${project.title} project screenshot`}
+                    title={project.title}
+                    category={project.category}
+                    priority={index === 0}
+                    eager={index <= 1 || isImagePreloaded(project.image)}
+                  />
 
                   {/* Project Content */}
                   <div className="p-4 sm:p-6 flex-1 flex flex-col min-h-0">
@@ -208,7 +191,16 @@ export function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium hover:scale-105 active:scale-95 transform"
+                        onMouseEnter={() => {
+                          // Prefetch the GitHub page on hover
+                          if (project.githubUrl) {
+                            const link = document.createElement('link');
+                            link.rel = 'prefetch';
+                            link.href = project.githubUrl;
+                            document.head.appendChild(link);
+                          }
+                        }}
                       >
                         <Github className="w-4 h-4" />
                         View Code

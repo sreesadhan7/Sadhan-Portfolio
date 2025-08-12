@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useCallback, memo } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Send, CheckCircle, Github, Linkedin, Twitter, Globe, Download, Briefcase } from 'lucide-react'
 import { contactInfo, socialLinks } from '@/data/portfolio'
@@ -13,6 +13,29 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   globe: Globe
 }
 
+// Memoized social link component
+const SocialLink = memo(({ link }: { link: any }) => {
+  const IconComponent = iconMap[link.platform.toLowerCase()] || Globe
+  
+  return (
+    <motion.a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      className="flex items-center gap-2 xs:gap-3 p-3 xs:p-4 bg-white dark:bg-slate-800 rounded-lg shadow hover:shadow-md transition-all duration-300"
+    >
+      <IconComponent size={20} className="text-portfolio-primary" />
+      <span className="text-sm xs:text-base font-medium text-gray-700 dark:text-gray-300">
+        {link.platform}
+      </span>
+    </motion.a>
+  )
+})
+
+SocialLink.displayName = 'SocialLink'
+
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,12 +45,13 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -87,12 +111,12 @@ export function Contact() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <motion.h2 variants={itemVariants} className="gradient-text text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 variants={itemVariants} className="gradient-text text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6">
             Opportunity to Work Together
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <motion.p variants={itemVariants} className="text-base xs:text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto px-4">
             I'm actively seeking new opportunities and collaborations. Whether you have a project in mind, 
             a position to fill, or just want to discuss potential partnerships, I'd love to hear from you.
           </motion.p>

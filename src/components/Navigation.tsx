@@ -58,25 +58,25 @@ export function Navigation() {
         }`}
       >
         <div className="container-max">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14 xs:h-16">
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-xl sm:text-2xl font-bold gradient-text cursor-pointer"
+              className="text-lg xs:text-xl sm:text-2xl font-bold gradient-text cursor-pointer"
               onClick={scrollToTop}
             >
               Sree Sadhan
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
               {navigationItems.map((item) => (
                 <motion.button
                   key={item.href}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium dark:text-gray-300"
+                  className="text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium dark:text-gray-300 text-sm lg:text-base"
                 >
                   {item.label}
                 </motion.button>
@@ -89,12 +89,12 @@ export function Navigation() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-portfolio-primary text-white rounded-lg font-medium hover:bg-portfolio-secondary transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="px-3 lg:px-4 py-2 bg-portfolio-primary text-white rounded-lg font-medium hover:bg-portfolio-secondary transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm lg:text-base"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Resume
+                <span className="hidden lg:inline">Resume</span>
               </motion.a>
               <ThemeToggle />
             </div>
@@ -106,7 +106,7 @@ export function Navigation() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-gray-700 hover:text-portfolio-primary transition-colors duration-300 dark:text-gray-300"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-5 h-5 xs:w-6 xs:h-6" /> : <Menu className="w-5 h-5 xs:w-6 xs:h-6" />}
             </motion.button>
           </div>
         </div>
@@ -119,9 +119,9 @@ export function Navigation() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200/20"
+              className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-gray-200/20 dark:border-gray-700/20"
             >
-              <div className="container-max py-4 space-y-4">
+              <div className="container-max py-3 xs:py-4 space-y-3 xs:space-y-4">
                 {navigationItems.map((item) => (
                   <motion.button
                     key={item.href}
@@ -129,7 +129,7 @@ export function Navigation() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -20, opacity: 0 }}
                     onClick={() => handleNavClick(item.href)}
-                    className="block w-full text-left text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium py-2 dark:text-gray-300"
+                    className="block w-full text-left text-gray-700 hover:text-portfolio-primary transition-colors duration-300 font-medium py-2 dark:text-gray-300 text-sm xs:text-base"
                   >
                     {item.label}
                   </motion.button>
@@ -140,15 +140,15 @@ export function Navigation() {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -20, opacity: 0 }}
-                  className="pt-4 border-t border-gray-200/20"
+                  className="pt-3 xs:pt-4 border-t border-gray-200/20 dark:border-gray-700/20"
                 >
                   <a
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-left text-portfolio-primary hover:text-portfolio-secondary transition-colors duration-300 font-medium py-2 flex items-center gap-2"
+                    className="block w-full text-left text-portfolio-primary hover:text-portfolio-secondary transition-colors duration-300 font-medium py-2 flex items-center gap-2 text-sm xs:text-base"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 xs:w-5 xs:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     Download Resume

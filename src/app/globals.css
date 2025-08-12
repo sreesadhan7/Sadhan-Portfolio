@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Critical CSS for faster loading */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -47,6 +48,16 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
   }
+  
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-synthesis: none;
+    text-rendering: optimizeSpeed;
+  }
 }
 
 @layer base {
@@ -79,6 +90,12 @@
 @layer components {
   .gradient-text {
     @apply bg-gradient-to-r from-portfolio-primary via-portfolio-secondary to-portfolio-accent bg-clip-text text-transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Prevent clipping of descenders */
+    line-height: 1.2;
+    padding-bottom: 2px;
   }
   
   .glass-effect {
@@ -90,11 +107,98 @@
   }
   
   .section-padding {
-    @apply py-16 px-4 sm:px-6 lg:px-8;
+    @apply py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8 xl:py-24;
   }
   
   .container-max {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Responsive text utilities */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm md:text-base;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  /* Responsive spacing utilities */
+  .space-responsive {
+    @apply space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10;
+  }
+  
+  .gap-responsive {
+    @apply gap-4 sm:gap-6 md:gap-8 lg:gap-10;
+  }
+  
+  .padding-responsive {
+    @apply p-4 sm:p-6 md:p-8 lg:p-10;
+  }
+
+  /* Ultra-wide screen utilities */
+  @media (min-width: 1920px) {
+    .section-padding {
+      @apply py-32;
+    }
+    
+    .container-max {
+      @apply px-12;
+    }
+    
+    .text-responsive-2xl {
+      font-size: 4rem;
+    }
+    
+    .text-responsive-3xl {
+      font-size: 5rem;
+    }
+  }
+
+  /* High DPI display optimizations */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .animate-glow {
+      filter: blur(0.5px);
+    }
+  }
+
+  /* Print-friendly styles */
+  @media print {
+    .section-padding {
+      @apply py-8;
+    }
+    
+    .bg-gradient-to-br,
+    .bg-gradient-to-r {
+      background: white !important;
+      color: black !important;
+    }
+    
+    .gradient-text {
+      background: none !important;
+      color: black !important;
+    }
+  }
+
+  /* Focus styles for better accessibility */
+  .focus-visible-portfolio {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-primary focus-visible:ring-offset-2;
   }
 
   /* Unified body text style for descriptions across sections */

@@ -25,17 +25,17 @@ export function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
-          <div className="w-24 h-1 bg-portfolio-primary mx-auto"></div>
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
+          <div className="w-16 xs:w-20 sm:w-24 h-1 bg-portfolio-primary mx-auto"></div>
         </motion.div>
 
         <div className="relative">
           {/* Center Timeline Line */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-portfolio-primary/30 dark:bg-portfolio-primary/40 hidden lg:block"></div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {workExperience.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -47,13 +47,13 @@ export function Experience() {
               >
                 {/* Centered logo circle on the line */}
                 <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-6">
-                  <div className="relative w-16 h-16 rounded-full bg-white dark:bg-slate-800 shadow-xl ring-4 ring-portfolio-primary/30 overflow-hidden">
+                  <div className="relative w-12 h-12 xl:w-16 xl:h-16 rounded-full bg-white dark:bg-slate-800 shadow-xl ring-4 ring-portfolio-primary/30 overflow-hidden">
                     {/* @ts-ignore: allow optional logoUrl on exp */}
                     {exp.companyLogoUrl ? (
-                      <Image src={exp.companyLogoUrl} alt={exp.company} fill sizes="64px" className="object-cover" />
+                      <Image src={exp.companyLogoUrl} alt={exp.company} fill sizes="(max-width: 1280px) 48px, 64px" className="object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-sm font-bold text-portfolio-primary">
+                        <span className="text-xs xl:text-sm font-bold text-portfolio-primary">
                           {getCompanyInitials(exp.company)}
                         </span>
                       </div>
@@ -63,19 +63,19 @@ export function Experience() {
 
                 {/* Meta next to the circle (location + dates) */}
                 <div
-                  className={`hidden lg:block absolute top-9 ${
+                  className={`hidden lg:block absolute top-6 xl:top-9 ${
                     index % 2 === 0
-                      ? 'left-[calc(51%+2.25rem)] text-left'
-                      : 'right-[calc(51%+2.25rem)] text-right'
+                      ? 'left-[calc(51%+1.75rem)] xl:left-[calc(51%+2.25rem)] text-left'
+                      : 'right-[calc(51%+1.75rem)] xl:right-[calc(51%+2.25rem)] text-right'
                   }`}
                 >
-                  <div className="text-base text-gray-700 dark:text-gray-200 leading-tight">
+                  <div className="text-sm xl:text-base text-gray-700 dark:text-gray-200 leading-tight">
                     <div className={`flex items-center gap-1 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}>
-                      <MapPin className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                      <MapPin className="w-3 h-3 xl:w-4 xl:h-4 text-gray-500 dark:text-gray-300" />
                       <span>{exp.location}</span>
                     </div>
                     <div className={`flex items-center gap-1 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}>
-                      <Calendar className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                      <Calendar className="w-3 h-3 xl:w-4 xl:h-4 text-gray-500 dark:text-gray-300" />
                       <span>
                         {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
                       </span>
@@ -85,19 +85,19 @@ export function Experience() {
 
                 {/* Content Card */}
                 <div className={`lg:col-span-5 ${index % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8'}`}>
-                  <div className="bg-white dark:bg-slate-800 rounded-lg p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-portfolio-primary text-left">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-portfolio-primary rounded-full flex items-center justify-center text-white">
-                        <Briefcase className="w-6 h-6" />
+                  <div className="bg-white dark:bg-slate-800 rounded-lg p-4 xs:p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-portfolio-primary text-left">
+                    <div className="flex items-center gap-2 xs:gap-3 mb-3 xs:mb-4">
+                      <div className="w-10 h-10 xs:w-12 xs:h-12 bg-portfolio-primary rounded-full flex items-center justify-center text-white">
+                        <Briefcase className="w-5 h-5 xs:w-6 xs:h-6" />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
-                        <p className="text-portfolio-primary font-medium">{exp.company}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base xs:text-lg sm:text-xl font-semibold text-gray-900 dark:text-white truncate">{exp.title}</h3>
+                        <p className="text-portfolio-primary font-medium text-sm xs:text-base">{exp.company}</p>
                       </div>
                     </div>
 
                     {/* Location and Dates (mobile only) */}
-                    <div className="space-y-3 mb-4 lg:hidden">
+                    <div className="space-y-2 xs:space-y-3 mb-3 xs:mb-4 lg:hidden">
                       <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                         <MapPin className="w-4 h-4" />
                         <span>{exp.location}</span>

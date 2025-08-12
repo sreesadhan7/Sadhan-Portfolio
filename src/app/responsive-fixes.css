@@ -1,0 +1,113 @@
+/* Additional responsive utilities and fixes */
+
+/* Landscape mobile orientation */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .section-padding {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .hero-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Very small devices (Galaxy Fold, etc.) */
+@media screen and (max-width: 320px) {
+  .container-max {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .text-responsive-xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .gap-responsive {
+    gap: 0.5rem;
+  }
+}
+
+/* Large tablets and small desktops */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .project-card {
+    max-width: 360px;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Ultra-wide screens (21:9 and wider) */
+@media screen and (min-width: 2560px) {
+  .container-max {
+    max-width: 2000px;
+  }
+  
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .gradient-text {
+    background: none !important;
+    color: currentColor !important;
+  }
+  
+  .bg-portfolio-primary\/10 {
+    background-color: rgba(99, 102, 241, 0.3) !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-float,
+  .animate-glow,
+  .animate-bounce {
+    animation: none !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  .hover\:shadow-xl:hover {
+    box-shadow: var(--tw-shadow);
+  }
+  
+  /* Larger touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+  .backdrop-blur-md {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .dark .backdrop-blur-md {
+    background-color: rgba(30, 41, 59, 0.9);
+  }
+}

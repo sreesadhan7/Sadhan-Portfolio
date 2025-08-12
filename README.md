@@ -10,6 +10,8 @@ A modern, animated portfolio website built with **Next.js**, **TypeScript**, **T
 - **Responsive**: Fully responsive design that works on all devices
 - **Dark Mode Ready**: Built with dark mode support
 - **Performance Optimized**: Next.js 14 with App Router for optimal performance
+- **Advanced Image Optimization**: Intelligent preloading and adaptive quality based on connection speed
+- **Real-time Analytics**: Vercel Analytics and Speed Insights for performance monitoring
 - **TypeScript**: Full type safety throughout the application
 - **Tailwind CSS**: Utility-first CSS framework for rapid development
 - **Contact via Resend**: Serverless email sending using Resend API through a Next.js API route
@@ -25,6 +27,12 @@ A modern, animated portfolio website built with **Next.js**, **TypeScript**, **T
 - **Three.js**: 3D graphics library for background effects
 - **React Three Fiber**: React renderer for Three.js
 - **Lucide React**: Beautiful, customizable icons
+
+### Performance & Analytics
+- **Vercel Analytics**: Real-time web analytics and performance insights
+- **Vercel Speed Insights**: Core Web Vitals monitoring and optimization
+- **Image Optimization**: Advanced image preloading and adaptive quality based on connection speed
+- **Performance Monitoring**: Enhanced monitoring for image loading and user interactions
 
 ### Email/Contact
 - **Resend API**: Emails are sent via a Next.js API route at `src/app/api/send-email/route.ts` using your `RESEND_API_KEY`
@@ -70,6 +78,7 @@ A modern, animated portfolio website built with **Next.js**, **TypeScript**, **T
 sadhan-portfolio/                           # Project root
 ├── public/                                 # Static assets served as-is
 │   ├── logos/                              # Company / tech logos
+│   ├── projectImages/                      # Project screenshots and images
 │   ├── favicon.png                         # Browser tab icon
 │   ├── MVNC4784.JPG                        # Profile/hero image
 │   └── resume.pdf                          # Downloadable résumé
@@ -77,6 +86,7 @@ sadhan-portfolio/                           # Project root
 ├── src/                                    # Application source
 │   ├── app/                                # Next.js App Router
 │   │   ├── globals.css                     # Global styles & animations
+│   │   ├── responsive-fixes.css            # Additional responsive design fixes
 │   │   ├── layout.tsx                      # Root layout component
 │   │   ├── page.tsx                        # Main landing page
 │   │   └── api/                            # Serverless API routes
@@ -90,7 +100,10 @@ sadhan-portfolio/                           # Project root
 │   │   ├── FloatingParticles.tsx           # Three.js background particles
 │   │   ├── Footer.tsx                      # Footer with links
 │   │   ├── Hero.tsx                        # Hero / intro section
+│   │   ├── ImagePrefetch.tsx               # Performance: Image preloading component
 │   │   ├── Navigation.tsx                  # Top navigation bar
+│   │   ├── PerformanceMonitor.tsx          # Performance monitoring initialization
+│   │   ├── ProjectImage.tsx                # Optimized project image component
 │   │   ├── Projects.tsx                    # Projects showcase
 │   │   ├── Skills.tsx                      # Skills grid
 │   │   └── ThemeToggle.tsx                 # Light/Dark mode toggle
@@ -98,11 +111,19 @@ sadhan-portfolio/                           # Project root
 │   ├── data/
 │   │   └── portfolio.ts                    # Static content (projects, skills, etc.)
 │   │
+│   ├── hooks/
+│   │   └── useOptimizedNavigation.ts       # Custom hook for optimized project navigation
+│   │
 │   ├── lib/
 │   │   └── utils.ts                        # Helpers & utilities
 │   │
-│   └── types/
-│       └── index.ts                        # Shared TypeScript types & interfaces
+│   ├── types/
+│   │   └── index.ts                        # Shared TypeScript types & interfaces
+│   │
+│   └── utils/                              # Performance optimization utilities
+│       ├── enhancedImagePerformanceMonitor.ts  # Advanced image performance tracking
+│       ├── imageOptimization.ts            # Adaptive image quality based on connection
+│       └── imagePreloader.ts               # Intelligent image preloading system
 │
 ├── .env.local                              # Local env vars (e.g., RESEND_API_KEY)
 ├── .gitignore                              # Git ignore rules
@@ -115,6 +136,7 @@ sadhan-portfolio/                           # Project root
 ├── QUICK_START.md                          # Quick setup notes (optional)
 ├── README.md                               # Project readme
 ├── RESEND_SETUP.md                         # Resend API setup guide
+├── RESPONSIVE_IMPLEMENTATION.md            # Responsive design implementation details
 ├── tailwind.config.js                      # Tailwind CSS configuration
 └── tsconfig.json                           # TypeScript compiler options
 ```
@@ -162,6 +184,12 @@ sadhan-portfolio/                           # Project root
 - Floating particles using Three.js
 - Smooth animations
 - Performance optimized
+
+### Performance Optimization Components
+- **ImagePrefetch**: Intelligent image preloading for faster project image loading
+- **PerformanceMonitor**: Real-time performance monitoring and metrics collection
+- **ProjectImage**: Adaptive image loading with connection-aware quality optimization
+- **useOptimizedNavigation**: Custom hook for optimized project navigation and preloading
 
 ## 🚀 Getting Started
 
@@ -250,6 +278,12 @@ Customize animations in `src/app/globals.css`:
 3. Update navigation in `src/data/portfolio.ts`
 4. Add corresponding types in `src/types/index.ts`
 
+### Performance Optimization
+- Use the `ImagePrefetch` component to preload images
+- Implement `PerformanceMonitor` for tracking metrics
+- Utilize `ProjectImage` for optimized image rendering
+- Leverage `useOptimizedNavigation` hook for smart preloading
+
 ### Styling
 - Use Tailwind CSS utility classes
 - Create custom components in `globals.css`
@@ -273,12 +307,31 @@ Dark mode support is built-in and automatically detects system preferences. Cust
 
 ## 🚀 Performance Optimization
 
+### Built-in Next.js Optimizations
 - **Code Splitting**: Automatic with Next.js
-- **Image Optimization**: Next.js Image component
+- **Image Optimization**: Next.js Image component with adaptive loading
 - **Font Optimization**: Next.js font optimization
 - **Bundle Analysis**: Use `npm run build` to analyze bundle size
 
-## 🔮 Future Enhancements
+### Advanced Performance Features
+- **Intelligent Image Preloading**: Background preloading of project images based on priority
+- **Connection-Aware Loading**: Adaptive image quality based on user's connection speed
+- **Performance Monitoring**: Real-time tracking of image load times and user interactions
+- **Optimized Navigation**: Smart preloading of content when users hover over navigation items
+- **Vercel Analytics**: Built-in analytics for performance insights and user behavior
+- **Core Web Vitals Monitoring**: Speed Insights for LCP, FID, and CLS optimization
+
+## � Documentation
+
+This project includes comprehensive documentation for different aspects:
+
+- **README.md** - Main project documentation (this file)
+- **PROJECT_OVERVIEW.md** - High-level architecture and design decisions
+- **QUICK_START.md** - Fast setup guide for developers
+- **RESEND_SETUP.md** - Detailed guide for setting up email functionality
+- **RESPONSIVE_IMPLEMENTATION.md** - Complete responsive design implementation details
+
+## �🔮 Future Enhancements
 
 - **CMS Integration (optional)**: If you want editable content in the future
 - **Blog Section**: Technical articles and insights
