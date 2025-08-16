@@ -24,14 +24,14 @@ export function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-portfolio-light via-white to-portfolio-primary/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-portfolio-light via-white to-portfolio-primary/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 pb-16 sm:pb-8 md:pb-0">
       {/* Simplified background elements for faster loading */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-portfolio-primary/10 rounded-full blur-2xl opacity-60"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-portfolio-secondary/10 rounded-full blur-2xl opacity-60"></div>
       </div>
 
-      <div className="container-max relative z-10">
+      <div className="container-max relative z-10 pb-8 sm:pb-4 md:pb-0">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -179,25 +179,25 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center"
-        >
-          <motion.button
-            onClick={scrollToAbout}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-gray-600 hover:text-portfolio-primary transition-colors duration-300 dark:text-gray-300"
-          >
-            <ChevronDown className="w-6 h-6 mx-auto mb-2 dark:text-gray-300" />
-            <span className="text-sm">Scroll Down</span>
-          </motion.button>
-        </motion.div>
       </div>
+
+      {/* Scroll Indicator - positioned relative to viewport on mobile */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.5 }}
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 text-center z-20"
+      >
+        <motion.button
+          onClick={scrollToAbout}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="text-gray-600 hover:text-portfolio-primary transition-colors duration-300 dark:text-gray-300 flex flex-col items-center"
+        >
+          <ChevronDown className="w-5 h-5 xs:w-6 xs:h-6 mb-1 xs:mb-2 dark:text-gray-300" />
+          <span className="text-xs xs:text-sm whitespace-nowrap">Scroll Down</span>
+        </motion.button>
+      </motion.div>
     </section>
   )
 } 

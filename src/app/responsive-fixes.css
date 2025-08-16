@@ -17,6 +17,46 @@
   }
 }
 
+/* Mobile devices - ensure scroll indicator doesn't overlap */
+@media screen and (max-width: 640px) {
+  /* Scroll indicator positioned relative to viewport on mobile */
+  #home .absolute.bottom-4 {
+    bottom: 1rem !important; /* Fixed distance from viewport bottom */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 30 !important; /* Ensure it's above content */
+  }
+  
+  /* Reduce hero section bottom padding since scroll is now outside */
+  #home {
+    padding-bottom: 1rem !important;
+  }
+  
+  #home .grid {
+    gap: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Floating info cards - restore original positioning */
+  #home .absolute.-bottom-2.-left-2,
+  #home .absolute.-bottom-3.-left-3 {
+    bottom: -0.5rem !important;
+    left: -0.5rem !important;
+    transform: none !important;
+  }
+}
+
+/* Scroll indicator centering fixes - more specific */
+@media screen and (min-width: 0px) {
+  /* Ensure scroll indicator is always centered */
+  #home .absolute.bottom-4.left-1\/2,
+  #home .absolute.bottom-6.left-1\/2,
+  #home .absolute.bottom-8.left-1\/2 {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
 /* Very small devices (Galaxy Fold, etc.) */
 @media screen and (max-width: 320px) {
   .container-max {
@@ -30,6 +70,26 @@
   
   .gap-responsive {
     gap: 0.5rem;
+  }
+  
+  /* Hero section adjustments for very small screens */
+  #home {
+    padding-bottom: 0.5rem !important; /* Minimal padding since scroll is outside */
+  }
+  
+  /* Scroll indicator positioned at safe distance from viewport bottom */
+  #home .absolute.bottom-4 {
+    bottom: 0.75rem !important; /* Closer to bottom on very small screens */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 30 !important;
+  }
+  
+  /* Ensure floating experience card stays in original position */
+  #home .absolute.-bottom-2.-left-2 {
+    bottom: -0.5rem !important;
+    left: -0.5rem !important;
+    transform: none !important;
   }
 }
 

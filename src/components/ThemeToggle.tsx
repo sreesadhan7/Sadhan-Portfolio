@@ -8,18 +8,18 @@ export function ThemeToggle() {
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
-    // const prefersDark = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : false
-    const shouldDark = stored === 'dark' // default false if null
+    const prefersDark = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : false
+    const shouldDark = stored === 'dark' || (!stored && prefersDark) // use system preference if no stored value
     setIsDark(shouldDark)
     if (shouldDark) {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
-    // initial value the first time
-  if (!stored) {
-    localStorage.setItem("theme", "light");
-  }
+    // Set initial value based on system preference if not stored
+    if (!stored) {
+      localStorage.setItem("theme", prefersDark ? "dark" : "light");
+    }
   }, [])
 
   const toggle = () => {
