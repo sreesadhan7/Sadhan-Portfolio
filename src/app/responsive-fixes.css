@@ -19,6 +19,17 @@
 
 /* Mobile devices - ensure scroll indicator doesn't overlap */
 @media screen and (max-width: 640px) {
+  /* Ensure navigation bar has proper height and spacing */
+  nav {
+    min-height: 4rem; /* 64px minimum height */
+  }
+
+  /* Add top padding to hero section to account for navigation bar */
+  #home {
+    padding-top: 5rem !important; /* 80px to clear navigation */
+    padding-bottom: 1rem !important;
+  }
+
   /* Scroll indicator positioned relative to viewport on mobile */
   #home .absolute.bottom-4 {
     bottom: 1rem !important; /* Fixed distance from viewport bottom */
@@ -28,9 +39,6 @@
   }
   
   /* Reduce hero section bottom padding since scroll is now outside */
-  #home {
-    padding-bottom: 1rem !important;
-  }
   
   #home .grid {
     gap: 1.5rem;

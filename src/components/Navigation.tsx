@@ -39,7 +39,7 @@ export function Navigation() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-50 p-3 bg-portfolio-primary text-white rounded-full shadow-lg hover:bg-portfolio-secondary transition-all duration-300 hover:scale-110"
+            className="fixed bottom-6 right-6 z-40 p-3 bg-portfolio-primary text-white rounded-full shadow-lg hover:bg-portfolio-secondary transition-all duration-300 hover:scale-110"
           >
             <ChevronUp className="w-5 h-5" />
           </motion.button>
@@ -51,14 +51,14 @@ export function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 pointer-events-auto ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-auto ${
           isScrolled 
             ? 'bg-white/90 dark:bg-slate-900/80 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
             : 'bg-transparent'
         }`}
       >
         <div className="container-max">
-          <div className="flex items-center justify-between h-14 xs:h-16">
+          <div className="flex items-center justify-between h-16 xs:h-18 sm:h-16">
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -119,7 +119,7 @@ export function Navigation() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-gray-200/20 dark:border-gray-700/20"
+              className="md:hidden bg-white dark:bg-slate-900 border-t border-gray-200/20 dark:border-gray-700/20 absolute left-0 right-0 top-full z-50 min-h-screen"
             >
               <div className="container-max py-3 xs:py-4 space-y-3 xs:space-y-4">
                 {navigationItems.map((item) => (

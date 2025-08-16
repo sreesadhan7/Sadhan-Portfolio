@@ -24,14 +24,14 @@ export function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-portfolio-light via-white to-portfolio-primary/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 pb-16 sm:pb-8 md:pb-0">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-portfolio-light via-white to-portfolio-primary/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 pb-16 sm:pb-8 md:pb-0 pt-20 sm:pt-24">
       {/* Simplified background elements for faster loading */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-portfolio-primary/10 rounded-full blur-2xl opacity-60"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-portfolio-secondary/10 rounded-full blur-2xl opacity-60"></div>
       </div>
 
-      <div className="container-max relative z-10 pb-8 sm:pb-4 md:pb-0">
+      <div className="container-max relative z-10 pb-8 sm:pb-4 md:pb-0 mt-4 sm:mt-0">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
