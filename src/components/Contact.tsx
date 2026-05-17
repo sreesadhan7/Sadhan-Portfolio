@@ -2,14 +2,15 @@
 
 import React, { useState, useCallback, memo } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Send, CheckCircle, Github, Linkedin, Twitter, Globe, Download, Briefcase } from 'lucide-react'
+import { Mail, Send, CheckCircle, Globe, Download, Briefcase } from 'lucide-react'
+import { GithubIcon, LinkedinIcon, TwitterXIcon } from '@/components/icons/BrandIcons'
 import { contactInfo, socialLinks } from '@/data/portfolio'
 
 // Icon mapping for social links
 const iconMap: Record<string, React.ComponentType<any>> = {
-  github: Github,
-  linkedin: Linkedin,
-  twitter: Twitter,
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  twitter: TwitterXIcon,
   globe: Globe
 }
 
@@ -199,8 +200,8 @@ export function Contact() {
                     aria-label={social.platform}
                     className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-portfolio-primary hover:bg-portfolio-primary hover:text-white transition-all duration-300 pointer-events-auto relative z-[10]"
                   >
-                    {social.platform === 'GitHub' && <Github className="w-6 h-6" />}
-                    {social.platform === 'LinkedIn' && <Linkedin className="w-6 h-6" />}
+                    {social.platform === 'GitHub' && <GithubIcon className="w-6 h-6" />}
+                    {social.platform === 'LinkedIn' && <LinkedinIcon className="w-6 h-6" />}
                     {social.platform !== 'GitHub' && social.platform !== 'LinkedIn' && (
                       <Globe className="w-6 h-6" />
                     )}

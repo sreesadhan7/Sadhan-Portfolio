@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useMemo } from 'react'
-import { ChevronLeft, ChevronRight, Github } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { GithubIcon } from '@/components/icons/BrandIcons'
 import { projects } from '@/data/portfolio'
 import { ProjectImage } from './ProjectImage'
 import { useProjectImagePreloader } from '@/utils/imagePreloader'
@@ -72,7 +73,7 @@ export function Projects() {
                   : 'bg-white text-portfolio-primary border-portfolio-primary/30 hover:bg-portfolio-primary/5'
               }`}
             >
-              <Github className="w-5 h-5" />
+              <GithubIcon className="w-5 h-5" />
               <span>All Projects: {projects.length}</span>
             </button>
             
@@ -202,7 +203,7 @@ export function Projects() {
                           }
                         }}
                       >
-                        <Github className="w-4 h-4" />
+                        <GithubIcon className="w-4 h-4" />
                         View Code
                       </a>
                     </div>

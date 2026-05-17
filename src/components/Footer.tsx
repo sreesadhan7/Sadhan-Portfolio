@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, Github, Linkedin, ExternalLink } from 'lucide-react'
+import { Heart, ExternalLink } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '@/components/icons/BrandIcons'
 import { socialLinks } from '@/data/portfolio'
 
 export function Footer() {
@@ -10,9 +11,9 @@ export function Footer() {
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'github':
-        return <Github className="w-4 h-4" />
+        return <GithubIcon className="w-4 h-4" />
       case 'linkedin':
-        return <Linkedin className="w-4 h-4" />
+        return <LinkedinIcon className="w-4 h-4" />
       default:
         return <ExternalLink className="w-4 h-4" />
     }
