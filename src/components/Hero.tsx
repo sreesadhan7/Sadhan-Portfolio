@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { ChevronDown, Download, Mail, Github, Linkedin } from 'lucide-react'
+import { ChevronDown, Download, Mail } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '@/components/icons/BrandIcons'
 import { personalInfo, socialLinks } from '@/data/portfolio'
 import { useState, useCallback } from 'react'
 
@@ -109,9 +110,9 @@ export function Hero() {
                   transition={{ duration: 0.3, delay: 1 + index * 0.1 }}
                   className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-portfolio-primary hover:bg-portfolio-primary hover:text-white transition-all duration-300"
                 >
-                  {social.platform === 'GitHub' && <Github className="w-6 h-6" />}
-                  {social.platform === 'LinkedIn' && <Linkedin className="w-6 h-6" />}
-                  {social.platform === 'Portfolio' && <Github className="w-6 h-6" />}
+                  {social.platform === 'GitHub' && <GithubIcon className="w-6 h-6" />}
+                  {social.platform === 'LinkedIn' && <LinkedinIcon className="w-6 h-6" />}
+                  {social.platform === 'Portfolio' && <GithubIcon className="w-6 h-6" />}
                 </motion.a>
               ))}
             </motion.div>
