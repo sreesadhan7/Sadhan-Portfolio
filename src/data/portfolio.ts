@@ -15,8 +15,8 @@ export const education: Education[] = [
     degree: "Master of Science in Computer Science",
     institution: "University of Florida",
     field: "Computer Science",
-    startDate: "2023-08-02",
-    endDate: "2025-05-31",
+    startDate: "2023-08-21",
+    endDate: "2025-05-06",
     gpa: "3.81/4.0",
     description: "Focused on advanced computer science concepts including AI/ML, cloud computing, and full-stack development.",
     achievements: [
@@ -47,61 +47,91 @@ export const education: Education[] = [
 export const workExperience: WorkExperience[] = [
   {
     id: "1",
-    title: "Software Engineer",
-    company: "University of Florida",
-    location: "Gainesville, FL, USA",
-    startDate: "2024-08-02",
-    endDate: "Present",
+    title: "Software Engineer – Full Stack",
+    company: "Parse Software Development",
+    location: "Lincoln, NE, USA",
+    startDate: "2025-10-13",
+    endDate: "2026-01-03",
     current: true,
-    description: "Leading instruction and development in AI/ML concepts while building data-driven solutions and interactive visualizations.",
+    description: "Engineering HIPAA-compliant service data platforms and scalable cloud infrastructure for regulated production systems in financial services.",
     responsibilities: [
-      "Led instruction for 60+ students on AI and Machine Learning concepts using environmental datasets, emphasizing pre-processing and feature engineering in Python (NumPy, Pandas) to ensure high-quality inputs for modeling.",
-      "Facilitated lab sessions in Python (scikit-learn) to demonstrate classification and regression algorithms, boosting prediction accuracy by 77% and reducing false positives by 26% through effective feature engineering and hyperparameter tuning.",
-      "Incorporated prompt engineering with LLMs to assist colleagues extract insights from data, streamlining workflows by 40%.",
-      "Developed interactive visualizations in Python (Matplotlib, Seaborn) and Tableau to reveal hidden patterns, enabling real-time trend analysis and driving an 85% improvement in data-driven decision-making accuracy."
+      "Engineered a HIPAA-compliant service data platform utilizing React, TypeScript, Java (Spring Boot) and PostgreSQL, streamlining backend services while achieving sub-2ms 95% REST API response times across high-frequency client workflows.",
+      "Architected scalable AWS (ALB, EKS, IAM, S3) infrastructure using Terraform (IaC) and Docker orchestration, establishing zero-downtime deployments and reducing environment provisioning time by 80% for regulated production systems.",
+      "Fortified CI/CD deployment pipelines via GitHub for automating Unit testing (JUnit, JMeter) and rollout validation, sustaining 99.8% production uptime and accelerating release cycles by 60% across distributed financial services.",
+      "Implemented OAuth2, session-based RBAC with audit trails and role-based checks, reducing manual reconciliation effort by 30%."
     ],
-    technologies: ["Artifical Intelligence (AI)", "Machine Learning", "Python", "NumPy", "Pandas", "scikit-learn", "Matplotlib", "Seaborn", "Tableau", "LLMs", "Prompt Engineering"],
-    companyLogoUrl: "/logos/UF logo.png"
+    technologies: ["React", "TypeScript", "Java (Spring Boot)", "PostgreSQL", "AWS (ALB, EKS, IAM, S3)", "Terraform", "Docker", "CI/CD", "JUnit", "JMeter", "OAuth2", "RBAC", "GitHub"],
+    companyLogoUrl: "/logos/Parse.png"
   },
   {
     id: "2",
-    title: "Software Engineer – Full Stack Developer",
-    company: "Arrow North Design",
-    location: "Raleigh, NC, USA",
-    startDate: "2025-01-20",
-    endDate: "2025-05-2",
+    title: "Graduate Research Assistant",
+    company: "University of Florida",
+    location: "Gainesville, FL, USA",
+    startDate: "2025-01-01",
+    endDate: "2025-12-05",
     current: false,
-    description: "Designed and developed scalable full-stack web applications with modern technologies and cloud-native architecture.",
+    description: "Developed modular microservices and real-time AI/ML workflows supporting 500+ concurrent users across production deployments.",
     responsibilities: [
-      "Designed a scalable full-stack web application using Next.js, TypeScript, and Tailwind CSS for responsive styling, optimizing state management and implementing OAuth/JWT flows, resulting in a 30% performance increase.",
-      "Architected cloud-native applications with Firebase (OAuth) for secure authentication, enhanced UI/UX performance via Google Cloud Platform services and achieved 25% faster load times with seamless Vercel deployments.",
-      "Integrated RESTful APIs in Python (Flask) by implementing microservices-based architecture with efficient API routing and refined NoSQL queries through proper indexing, reducing query latency by 40% and delivering scalable backend services.",
-      "Automated CI/CD pipelines using GitHub Actions and Docker for consistent, scalable builds and enforced code quality via ESLint and unit testing, cutting deployment errors by 75% and accelerating product release cycles."
+      "Developed modular microservices using React (Next.js), TypeScript and Java (Spring MVC), decreasing user-facing page load times by 40% across production deployments serving 500+ concurrent users.",
+      "Scaled real-time backend operations with Python on GCP and GitHub-based CI/CD pipelines, sustaining 500+ requests/min with 98% uptime through automated testing workflows.",
+      "Orchestrated Kafka-driven ETL pipelines and AI/ML + NLP workflows with Python (LangChain, Hugging Face), LLMs, and SQL databases to support real-time data workflows, improving automated redaction accuracy by 30%."
     ],
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase", "OAuth", "JWT Authentication", "Python (Flask)", "RESTful APIs", "NoSQL", "Google Cloud Platform (GCP)", "CI/CD", "GitHub", "Docker", "Vercel", "Git"],
-    companyLogoUrl: "/logos/Arrow North Design.jpeg" 
+    technologies: ["React (Next.js)", "TypeScript", "Java (Spring MVC)", "Python", "GCP", "Kafka", "LangChain", "Hugging Face", "LLMs", "SQL", "CI/CD", "GitHub"],
+    companyLogoUrl: "/logos/UF logo.png"
   },
   {
     id: "3",
-    title: "Software Engineer – Full Stack Developer",
+    title: "Software Engineer Intern",
+    company: "Arrow North Design",
+    location: "Raleigh, NC, USA",
+    startDate: "2025-01-01",
+    endDate: "2025-05-02",
+    current: false,
+    description: "Spearheaded full-stack development with TypeScript, React and GraphQL for real-time data flows across distributed cloud-native microservices.",
+    responsibilities: [
+      "Spearheaded development of a full-stack application with TypeScript, React (Next.js) and GraphQL, elevating frontend performance by 30% for real-time data flows processed across distributed microservices.",
+      "Architected cloud-native microservices using Python (Flask) with RESTful APIs on Azure, optimizing NoSQL data models to reduce API latency by 40% against high-throughput request volumes.",
+      "Automated release pipelines leveraging CI/CD (GitHub) and Docker, cutting deployment failures by 75% and accelerating frontend load times by 25% through performance-first engineering practices."
+    ],
+    technologies: ["TypeScript", "React (Next.js)", "GraphQL", "Python (Flask)", "RESTful APIs", "Azure", "NoSQL", "CI/CD", "GitHub", "Docker"],
+    companyLogoUrl: "/logos/Arrow North Design.jpeg"
+  },
+  {
+    id: "4",
+    title: "Software Engineer",
     company: "TCS",
     location: "Bangalore, India",
-    startDate: "2021-04-02",
-    endDate: "2023-07-31",
+    startDate: "2021-04-01",
+    endDate: "2023-08-18",
     current: false,
-    description: "Led development and testing for enterprise applications while optimizing performance and leading agile teams.",
+    description: "Delivered mission-critical enterprise workflows, optimized high-volume trading systems, and led cross-functional Agile teams across 10+ AWS-hosted applications.",
     responsibilities: [
-      "Spearheaded functional, UAT, and QA testing for 10+ enterprise apps using HP ALM for defect tracking and AWS CloudWatch for log monitoring, achieving 98% defect coverage and improving release quality to over 90%.",
-      "Enhanced UI/UX design with React Hooks for state management, reducing production issues by 30% and leveraged TypeScript for static typing and AngularJS, enabling 40% faster issue resolution.",
-      "Developed data validation logic and backend applications in Node.js (Express.js), integrated REST APIs via Python (Django) for scalable endpoints, and optimized MySQL/PostgreSQL queries to boost performance by 45%.",
-      "Led agile teams to increase project efficiency by 80% through Jira for task tracking, Confluence for knowledge sharing, and ServiceNow/MS Excel for workflow documentation, increasing stakeholder satisfaction by 97%."
+      "Delivered mission-critical workflows using Java (Spring Boot), Node.js and Python, generating RESTful APIs that reduced trade confirmation response times by 45% for high-volume SQL data transaction processing.",
+      "Overhauled front-office UI/UX components with React, AngularJS and JavaScript while optimizing MySQL queries for data reporting pipelines, dropping production incidents by 30% across 10+ AWS-hosted trading systems.",
+      "Streamlined software release quality across platforms using Test-Driven Development (TDD) and Unit Testing (JUnit) automation workflows, yielding an 87% reduction in post-release defects in regulated production environments.",
+      "Directed 3+ cross-functional Agile (Scrum) teams via Jira and Confluence to deliver client-facing modules on schedule, enforcing HIPAA compliance and participating in on-call rotations, raising stakeholder satisfaction to 90%."
     ],
-    technologies: ["React", "TypeScript", "AngularJS", "Node.js", "Express.js", "Python", "Django", "MySQL", "PostgreSQL", "AWS CloudWatch", "Jira", "Confluence", "ServiceNow", "MS Excel", "HP ALM", "Agile Methodologies", "AWS", "Git", "Project Management", "Leadership", "Team Collaboration", "Communication", "Problem Solving", "Time Management", "Continuous Learning"],
+    technologies: ["Java (Spring Boot)", "Node.js", "Python", "React", "AngularJS", "JavaScript", "MySQL", "PostgreSQL", "RESTful APIs", "TDD", "JUnit", "AWS", "Jira", "Confluence", "Agile (Scrum)", "HIPAA"],
     companyLogoUrl: "/logos/TCS.jpg"
   }
 ]
 
 export const projects: Project[] = [
+  {
+    id: "0",
+    title: "Redactor AI",
+    description: "A real-time document redaction platform powered by LLMs and Transformer models. Processes sensitive documents using ETL pipelines and projects redaction patterns through interactive dashboards for review accuracy and compliance.",
+    image: "/projectImages/personal-data-censoring.webp",
+    technologies: ["Python", "React", "JavaScript", "SQL", "LLMs", "Transformer Models", "Snowflake", "Streamlit", "Tableau", "GitHub CI/CD"],
+    githubUrl: "https://github.com/sreesadhan7",
+    features: [
+      "55% faster release cycles via GitHub CI/CD",
+      "40% reduction in manual processing effort",
+      "85% improvement in review accuracy via Streamlit & Tableau dashboards"
+    ],
+    category: "ai"
+  },
   {
     id: "1",
     title: "Agentic AI Systems",
@@ -326,6 +356,7 @@ export const skills: Skill[] = [
   { id: "17", name: "Django", category: "backend", icon: "🌱" },
   { id: "18", name: "Flask", category: "backend", icon: "🍶" },
   { id: "19", name: "Express.js", category: "backend", icon: "🚂" },
+  { id: "69", name: "GraphQL", category: "backend", icon: "🔺" },
 
   // Databases & Storage
   { id: "20", name: "SQL", category: "databases", icon: "🗄️" },
@@ -354,6 +385,7 @@ export const skills: Skill[] = [
   { id: "41", name: "Spark", category: "cloud", icon: "🔥" },
   { id: "42", name: "CI/CD", category: "cloud", icon: "🔄" },
   { id: "43", name: "Cursor AI", category: "cloud", icon: "🤖" },
+  { id: "70", name: "Terraform", category: "cloud", icon: "🏗️" },
 
   // Analytics & Data Science
   { id: "44", name: "Pandas", category: "analytics", icon: "🐼" },
@@ -371,6 +403,8 @@ export const skills: Skill[] = [
   { id: "56", name: "R", category: "analytics", icon: "📊" },
   { id: "57", name: "LLMs", category: "analytics", icon: "🧠" },
   { id: "58", name: "RAG", category: "analytics", icon: "🔗" },
+  { id: "71", name: "LangChain", category: "analytics", icon: "⛓️" },
+  { id: "72", name: "Hugging Face", category: "analytics", icon: "🤗" },
 
   // Leadership & Management
   { id: "59", name: "Project Management", category: "leadership", icon: "📅" },

@@ -133,7 +133,7 @@ export function Navigation() {
               
               {/* Resume Download Button */}
               <motion.a
-                href="/resume.pdf"
+                href="/Sree Sadhan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -195,7 +195,7 @@ export function Navigation() {
                   className="pt-3 xs:pt-4 border-t border-gray-200/20 dark:border-gray-700/20"
                 >
                   <a
-                    href="/resume.pdf"
+                    href="/Sree Sadhan_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full text-left text-portfolio-primary hover:text-portfolio-secondary active:text-portfolio-secondary transition-colors duration-300 font-medium py-3 px-2 flex items-center gap-2 text-sm xs:text-base rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 active:bg-gray-200 dark:active:bg-slate-700 touch-manipulation"

@@ -56,7 +56,7 @@ export function Hero() {
                 {personalInfo.title}
               </div>
               <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0 dark:text-gray-300 leading-relaxed">
-                Transforming complex challenges into elegant digital solutions. With 3+ years of experience in Full-Stack Development, AI/ML, Application Testing and Cloud Technologies, and a Master’s in Computer Science and AI/ML from the University of Florida, I’m on a mission to build technology that inspires and drives change.
+                Transforming complex challenges into scalable, production-grade solutions. With 4+ years of experience in Full-Stack Development, AI/ML, and Cloud Technologies — and a Master’s in Computer Science from the University of Florida — I build systems that are fast, reliable, and built to last.
               </p>
             </motion.div>
 
@@ -67,7 +67,7 @@ export function Hero() {
               className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6 md:mb-8"
             >
               <motion.a
-                href="/resume.pdf"
+                href="/Sree Sadhan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -174,7 +174,7 @@ export function Hero() {
                 className="absolute -bottom-2 xs:-bottom-3 -left-2 xs:-left-3 bg-white rounded-lg shadow-lg p-2 xs:p-3 border border-gray-200 dark:bg-slate-800 dark:border-slate-700"
               >
                 <div className="text-xs xs:text-sm text-gray-600 dark:text-gray-300">Experience</div>
-                <div className="text-lg xs:text-xl font-bold text-portfolio-primary">3+ Years</div>
+                <div className="text-lg xs:text-xl font-bold text-portfolio-primary">4+ Years</div>
               </motion.div>
             </div>
           </motion.div>
