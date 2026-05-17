@@ -105,18 +105,18 @@ export function Projects() {
           {/* Navigation Arrows */}
           <button
             onClick={prevProject}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/30 backdrop-blur-md rounded-full shadow-lg hover:bg-white/50 transition-all duration-200 hover:scale-110 border border-white/20 hover:shadow-xl"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/30 dark:bg-slate-700/60 backdrop-blur-md rounded-full shadow-lg hover:bg-white/50 dark:hover:bg-slate-600/80 transition-all duration-200 hover:scale-110 border border-white/20 dark:border-slate-500/30 hover:shadow-xl"
             aria-label="Previous project"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700" />
+            <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-200" />
           </button>
 
           <button
             onClick={nextProject}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/30 backdrop-blur-md rounded-full shadow-lg hover:bg-white/50 transition-all duration-200 hover:scale-110 border border-white/20 hover:shadow-xl"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/30 dark:bg-slate-700/60 backdrop-blur-md rounded-full shadow-lg hover:bg-white/50 dark:hover:bg-slate-600/80 transition-all duration-200 hover:scale-110 border border-white/20 dark:border-slate-500/30 hover:shadow-xl"
             aria-label="Next project"
           >
-            <ChevronRight className="w-6 h-6 text-gray-700" />
+            <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-200" />
           </button>
 
           {/* Projects Container - 1/2/3 cards by breakpoint */}
@@ -157,13 +157,13 @@ export function Projects() {
                         {project.technologies.slice(0, 5).map((tech, techIndex) => (
                           <span
                             key={techIndex}
-                            className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-md font-medium"
+                            className="px-3 py-1.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-md font-medium"
                           >
                             {tech}
                           </span>
                         ))}
                         {project.technologies.length > 5 && (
-                          <span className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-md font-medium">
+                          <span className="px-3 py-1.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-md font-medium">
                             +{project.technologies.length - 5}
                           </span>
                         )}
@@ -186,12 +186,12 @@ export function Projects() {
                     </div>
 
                     {/* Action Button - Always at bottom */}
-                    <div className="w-full pt-4 mt-4 border-t border-gray-100 flex-shrink-0">
+                    <div className="w-full pt-4 mt-4 border-t border-gray-100 dark:border-slate-700 flex-shrink-0">
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium hover:scale-105 active:scale-95 transform"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 dark:bg-slate-600 text-white text-sm rounded-lg hover:bg-gray-800 dark:hover:bg-slate-500 transition-colors duration-200 font-medium hover:scale-105 active:scale-95 transform"
                         onMouseEnter={() => {
                           // Prefetch the GitHub page on hover
                           if (project.githubUrl) {
@@ -214,7 +214,7 @@ export function Projects() {
         </div>
 
         {/* Project Counter */}
-        <div className="text-center text-gray-600">
+        <div className="text-center text-gray-600 dark:text-gray-400">
           <span className="font-medium">{currentProjectIndex + 1}</span> of {filteredProjects.length} projects
         </div>
       </div>

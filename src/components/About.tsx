@@ -44,7 +44,7 @@ export function About() {
               
               <div className="mt-6">
                 <a
-                  href="/resume.pdf"
+                  href="/Sree Sadhan_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-portfolio-primary text-white rounded-lg font-medium hover:bg-portfolio-secondary transition-all duration-300 shadow-lg hover:shadow-xl pointer-events-auto relative z-[10]"

@@ -169,7 +169,7 @@ export function Contact() {
             <motion.div variants={itemVariants} className="pt-6">
               <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-4">Resume</h4>
               <motion.a
-                href="/resume.pdf"
+                href="/Sree Sadhan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
