@@ -9,16 +9,17 @@ import os
 import time
 from datetime import datetime
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
-EMBEDDING_MODEL = "models/text-embedding-004"
+EMBEDDING_MODEL = "gemini-embedding-001"
 OUTPUT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "public", "knowledge-base.json")
 
 if not GOOGLE_API_KEY:
     raise ValueError("GOOGLE_API_KEY environment variable not set. Run: set GOOGLE_API_KEY=your_key (Windows) or export GOOGLE_API_KEY=your_key (Mac/Linux)")
 
-genai.configure(api_key=GOOGLE_API_KEY)
+client = genai.Client(api_key=GOOGLE_API_KEY, http_options=types.HttpOptions(api_version="v1"))
 
 # ---------------------------------------------------------------------------
 # Knowledge chunks — edit here to update the chatbot's knowledge
@@ -599,12 +600,12 @@ CHUNKS = [
 # ---------------------------------------------------------------------------
 
 def embed_text(text: str) -> list[float]:
-    result = genai.embed_content(
+    result = client.models.embed_content(
         model=EMBEDDING_MODEL,
-        content=text,
-        task_type="retrieval_document"
+        contents=text,
+        config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"),
     )
-    return result["embedding"]
+    return result.embeddings[0].values
 
 
 def main():

@@ -4,6 +4,60 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Bot, User, Loader2 } from 'lucide-react'
 
+const EMAIL_RE = /[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}/g
+const COLLAPSE_LINES = 7
+
+function renderLine(line: string) {
+  const parts: React.ReactNode[] = []
+  let last = 0
+  let match: RegExpExecArray | null
+  EMAIL_RE.lastIndex = 0
+  while ((match = EMAIL_RE.exec(line)) !== null) {
+    if (match.index > last) parts.push(line.slice(last, match.index))
+    parts.push(
+      <a key={match.index} href={`mailto:${match[0]}`} className="underline hover:opacity-80 break-all">
+        {match[0]}
+      </a>
+    )
+    last = match.index + match[0].length
+  }
+  if (last < line.length) parts.push(line.slice(last))
+  return parts
+}
+
+function FormattedText({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false)
+  const rawLines = text.split('\n')
+  const isLong = rawLines.length > COLLAPSE_LINES
+  const lines = isLong && !expanded ? rawLines.slice(0, COLLAPSE_LINES) : rawLines
+
+  return (
+    <div className="text-sm leading-relaxed space-y-1">
+      {lines.map((line, i) => {
+        const trimmed = line.trim()
+        if (trimmed === '') return <div key={i} className="h-1" />
+        if (trimmed.startsWith('•')) {
+          return (
+            <div key={i} className="flex gap-2">
+              <span className="mt-0.5 flex-shrink-0">•</span>
+              <span>{renderLine(trimmed.slice(1).trim())}</span>
+            </div>
+          )
+        }
+        return <p key={i}>{renderLine(trimmed)}</p>
+      })}
+      {isLong && (
+        <button
+          onClick={() => setExpanded(v => !v)}
+          className="mt-1 text-xs font-medium opacity-70 hover:opacity-100 underline underline-offset-2 transition-opacity"
+        >
+          {expanded ? 'See less' : 'See more'}
+        </button>
+      )}
+    </div>
+  )
+}
+
 interface Message {
   id: string
   role: 'user' | 'assistant'
@@ -14,7 +68,7 @@ interface Message {
 const GREETING: Message = {
   id: 'greeting',
   role: 'assistant',
-  text: "Hi! I'm Sree's AI assistant. Ask me anything about his experience, projects, skills, or background — I'm happy to help!",
+  text: "Hi! I'm Sree's AI assistant. Ask me anything about his experience, projects, skills, or background. I'm happy to help!",
   timestamp: new Date(),
 }
 
@@ -58,13 +112,16 @@ function ChatMessage({ message }: { message: Message }) {
 
       {/* Bubble */}
       <div
-        className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap
+        className={`max-w-[80%] px-3 py-2 rounded-2xl
           ${isUser
             ? 'bg-portfolio-primary text-white rounded-tr-sm'
             : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 rounded-tl-sm'
           }`}
       >
-        {message.text}
+        {isUser
+          ? <p className="text-sm leading-relaxed">{message.text}</p>
+          : <FormattedText text={message.text} />
+        }
       </div>
     </motion.div>
   )
