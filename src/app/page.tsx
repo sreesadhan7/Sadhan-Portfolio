@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { Navigation } from '@/components/Navigation'
 import { Hero } from '@/components/Hero'
+import { Chatbot } from '@/components/Chatbot'
 
 // Optimized loading strategies for better performance
 const About = dynamic(() => import('@/components/About').then(mod => ({ default: mod.About })), { 
@@ -108,6 +109,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       {showParticles && <FloatingParticles />}
       <Navigation />
+      <Chatbot />
       <AnimatePresence mode="wait">
         <motion.div
           key="main-content"
