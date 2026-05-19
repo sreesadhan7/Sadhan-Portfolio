@@ -57,7 +57,7 @@ export function Hero() {
                 {personalInfo.title}
               </div>
               <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0 dark:text-gray-300 leading-relaxed">
-                Transforming complex challenges into scalable, production-grade solutions. With 4+ years of experience in Full-Stack Development, AI/ML, and Cloud Technologies — and a Master’s in Computer Science from the University of Florida — I build systems that are fast, reliable, and built to last.
+                Full-Stack Engineer with 4+ years of experience building production-grade systems across Software, AI/ML, Cloud, and Data Engineering. Master’s in Computer Science from the University of Florida. I turn complex problems into fast, reliable software that scales.
               </p>
             </motion.div>
 

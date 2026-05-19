@@ -90,11 +90,14 @@ sadhan-portfolio/                           # Project root
 │   │   ├── layout.tsx                      # Root layout component
 │   │   ├── page.tsx                        # Main landing page
 │   │   └── api/                            # Serverless API routes
-│   │       └── send-email/                 # Email endpoint folder
-│   │           └── route.ts                # Next.js API to send mail via Resend
+│   │       ├── send-email/                 # Email endpoint folder
+│   │       │   └── route.ts               # Next.js API to send mail via Resend
+│   │       └── chat/                       # RAG chatbot endpoint folder
+│   │           └── route.ts               # Embed query → retrieve chunks → generate answer
 │   │
 │   ├── components/                         # Reusable UI components
 │   │   ├── About.tsx                       # About & education section
+│   │   ├── Chatbot.tsx                     # Floating RAG chatbot widget
 │   │   ├── Contact.tsx                     # Contact form & info
 │   │   ├── Experience.tsx                  # Experience timeline
 │   │   ├── FloatingParticles.tsx           # Three.js background particles
@@ -125,7 +128,10 @@ sadhan-portfolio/                           # Project root
 │       ├── imageOptimization.ts            # Adaptive image quality based on connection
 │       └── imagePreloader.ts               # Intelligent image preloading system
 │
-├── .env.local                              # Local env vars (e.g., RESEND_API_KEY)
+├── scripts/
+│   └── generate_kb.py                      # Offline script: embeds KB chunks → public/knowledge-base.json
+├── requirements.txt                        # Python dependency for KB generation (google-genai)
+├── .env.local                              # Local env vars (e.g., RESEND_API_KEY, GOOGLE_API_KEY)
 ├── .gitignore                              # Git ignore rules
 ├── next-env.d.ts                           # Next.js TypeScript ambient types
 ├── next.config.js                          # Next.js configuration
@@ -134,6 +140,7 @@ sadhan-portfolio/                           # Project root
 ├── postcss.config.js                       # PostCSS config (used by Tailwind)
 ├── PROJECT_OVERVIEW.md                     # High-level docs (optional)
 ├── QUICK_START.md                          # Quick setup notes (optional)
+├── RAG_CHATBOT.md                          # RAG chatbot architecture and setup guide
 ├── README.md                               # Project readme
 ├── RESEND_SETUP.md                         # Resend API setup guide
 ├── RESPONSIVE_IMPLEMENTATION.md            # Responsive design implementation details
@@ -326,6 +333,7 @@ Dark mode support is built-in and automatically detects system preferences. Cust
 This project includes comprehensive documentation for different aspects:
 
 - **README.md** - Main project documentation (this file)
+- **RAG_CHATBOT.md** - Deep dive into the RAG chatbot: architecture, knowledge base, setup, and design decisions
 - **PROJECT_OVERVIEW.md** - High-level architecture and design decisions
 - **QUICK_START.md** - Fast setup guide for developers
 - **RESEND_SETUP.md** - Detailed guide for setting up email functionality
